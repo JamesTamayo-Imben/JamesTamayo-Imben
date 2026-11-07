@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 125" width="1000" height="125" role="img">
+<style>
+.f{opacity:0;animation:f .9s ease forwards}
+@keyframes f{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.tw{animation:tw 3.2s ease-in-out infinite}
+@keyframes tw{0%,100%{opacity:.1}50%{opacity:.9}}
+.bl{animation:bl 1s steps(1) infinite}
+@keyframes bl{50%{opacity:0}}
+.fl{stroke-dasharray:5 7;animation:fl 1s linear infinite}
+@keyframes fl{to{stroke-dashoffset:-12}}
+.pu{animation:pu 2.8s ease-in-out infinite}
+@keyframes pu{0%,100%{opacity:.45}50%{opacity:1}}
+@media (prefers-reduced-motion:reduce){.f{opacity:1;animation:none}}
+</style>
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#050E2B"/><stop offset="1" stop-color="#040A1C"/></linearGradient>
+<linearGradient id="a" x1="0" x2="1"><stop offset="0" stop-color="#3B82F6"/><stop offset="1" stop-color="#22D3EE"/></linearGradient>
+<linearGradient id="tx" x1="0" x2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".55" stop-color="#93C5FD"/><stop offset="1" stop-color="#22D3EE"/></linearGradient>
+<linearGradient id="sheen" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".13"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+<filter id="glow" x="-20%" y="-30%" width="140%" height="160%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+<filter id="blur" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="55"/></filter>
+<pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0V32" fill="none" stroke="#1B3170" stroke-opacity=".38"/></pattern>
+<clipPath id="rc"><rect width="1000" height="125" rx="18"/></clipPath>
+</defs>
+<g clip-path="url(#rc)">
+<rect width="1000" height="125" fill="url(#bg)"/><circle cx="150.0" cy="25.0" r="87.5" fill="#2563EB" opacity="0.16" filter="url(#blur)"><animate attributeName="cx" values="150.0;280.0;150.0" dur="12s" repeatCount="indefinite"/></circle><circle cx="880.0" cy="112.5" r="75.0" fill="#22D3EE" opacity="0.08" filter="url(#blur)"><animate attributeName="cy" values="112.5;87.5;112.5" dur="10s" repeatCount="indefinite"/></circle><rect width="1000" height="125" fill="url(#grid)"/>
+<text x="28" y="98" font-family="'JetBrains Mono','Fira Code',Consolas,'Courier New',monospace" font-size="96" fill="none" font-weight="800" font-style="normal" text-anchor="start" letter-spacing="0" stroke="#3B82F6" stroke-width="1.4" stroke-opacity=".55">03</text>
+<text x="170" y="46" font-family="'JetBrains Mono','Fira Code',Consolas,'Courier New',monospace" font-size="13" fill="#22D3EE" font-weight="700" font-style="normal" text-anchor="start" letter-spacing="5" class="f" style="animation-delay:0.1s">SELECTED WORK</text>
+<text x="170" y="88" font-family="Georgia,'Palatino Linotype','Times New Roman',serif" font-size="34" fill="#E6EEFF" font-weight="700" font-style="italic" text-anchor="start" letter-spacing="0" class="f" style="animation-delay:0.3s">Products, not assignments.</text>
+<rect x="172" y="102" width="0" height="3" rx="1.5" fill="url(#a)"><animate attributeName="width" from="0" to="130" begin=".6s" dur=".9s" fill="freeze"/></rect><line x1="850" y1="62" x2="975" y2="62" stroke="#3B82F6" stroke-opacity=".5" class="fl"/><circle cx="975" cy="62" r="5" fill="#22D3EE" filter="url(#glow)" class="pu"/><circle r="3" fill="#fff"><animateMotion path="M850 62 H975" dur="2.2s" repeatCount="indefinite"/></circle>
+</g>
+<rect x=".5" y=".5" width="999" height="124" rx="18" fill="none" stroke="#16295A"/>
+</svg>
