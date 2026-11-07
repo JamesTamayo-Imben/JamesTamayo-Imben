@@ -17,7 +17,9 @@ STYLE="""<style>
 @keyframes fl{to{stroke-dashoffset:-12}}
 .pu{animation:pu 2.8s ease-in-out infinite}
 @keyframes pu{0%,100%{opacity:.45}50%{opacity:1}}
-@media (prefers-reduced-motion:reduce){.f{opacity:1;animation:none}}
+.r{opacity:0;animation:r .6s ease forwards}
+@keyframes r{to{opacity:1}}
+@media (prefers-reduced-motion:reduce){.f,.r{opacity:1;animation:none}}
 </style>"""
 
 def wrap(name,w,h,body,orbs=True,big=False):
@@ -85,11 +87,11 @@ def hero():
     b+=f'<text x="40" y="184" font-family="{MONO}" font-size="66" font-weight="800" fill="url(#tx)" filter="url(#glow)" class="f" style="animation-delay:1.2s">JAMES TAMAYO</text>'
     b+=f'<rect x="42" y="204" width="0" height="4" rx="2" fill="url(#a)"><animate attributeName="width" from="0" to="280" begin="1.6s" dur="1s" fill="freeze"/></rect>'
     b+=ft(40,254,"AI-Enabled Full-Stack Developer",1.8,size=25,fill=LIGHT,weight="600",ls=1)
-    b+=ft(40,292,"Engineering intelligence. Shipping products people can trust.",2.1,size=19,fill=MUT,font=SERIF,style="italic")
+    b+=ft(40,292,"I design in Figma. I build with AI-assisted code. I ship.",2.1,size=19,fill=MUT,font=SERIF,style="italic")
     x=40
-    for i,c in enumerate(["LLMs","RAG","React","Node.js","AWS","Docker"]):
+    for i,c in enumerate(["AI-assisted","React","Laravel","Figma","Supabase","MySQL"]):
         p,pw=pill(x,322,c,13,2.4+i*0.15); b+=p; x+=pw+10
-    b+=f'<circle class="pu" cx="48" cy="404" r="5" fill="{CY}"/>'+ft(62,409,"open to work  ·  [Your City, Country]",2.9,size=13,fill=MUT)
+    b+=f'<circle class="pu" cx="48" cy="404" r="5" fill="{CY}"/>'+ft(62,409,"BSIS student  ·  Dasmariñas, Cavite, PH",2.9,size=13,fill=MUT)
     # neural net
     layers=[(690,3),(775,5),(860,5),(945,3)]; pts=[]
     for lx,n in layers: pts.append([(lx,220+(k-(n-1)/2)*54) for k in range(n)])
@@ -106,6 +108,58 @@ def hero():
     b+=t(690,372,"INPUT",11,MUT,ls=3,anchor="middle")+t(945,372,"OUTPUT",11,MUT,ls=3,anchor="middle")+t(817,372,"HIDDEN LAYERS",11,MUT,ls=3,anchor="middle")
     b+=f'<rect x="0" y="{h-4}" width="{w}" height="4" fill="url(#a)" opacity=".8"/>'
     wrap("james-hero-banner",w,h,b,big=True)
+
+
+# ---------- ASCII PORTRAIT ----------
+def portrait():
+    rows=open("ascii.txt",encoding="utf-8").read().split("\n")
+    cols=max(len(r) for r in rows); AW=480; cw=AW/cols; fs=cw/0.6; lh=cw*2.0
+    ax,ay=30,64; H=int(ay+len(rows)*lh+36); w=1000
+    cls={";":"#1E40AF",":":"#1E40AF","+":"#2563EB","x":"#3B82F6","X":"#60A5FA","$":"#93C5FD","&":"#EAF2FF"}
+    b=stars(w,H,30,21)
+    # frame for ascii
+    b+=f'<rect x="{ax-14}" y="22" width="{AW+28}" height="{H-44}" rx="14" fill="#030817" stroke="{LINE}"/>'
+    b+=f'<rect x="{ax-14}" y="22" width="{AW+28}" height="30" rx="14" fill="{PANEL}"/><rect x="{ax-14}" y="40" width="{AW+28}" height="12" fill="{PANEL}"/>'
+    for i,c in enumerate(["#1E3A8A",ACC,CY]): b+=f'<circle cx="{ax+4+i*18}" cy="37" r="5" fill="{c}"/>'
+    b+=t(ax+AW/2,41,"~/james/portrait.ascii",11,MUT,anchor="middle")
+    b+=f'<g filter="url(#glow)" opacity=".95">'
+    for i,row in enumerate(rows):
+        runs=[]; 
+        for ch in row:
+            k=cls.get(ch,"sp")
+            if runs and runs[-1][0]==k: runs[-1][1]+=ch
+            else: runs.append([k,ch])
+        tsp="".join((f'<tspan fill="{k}">{e(txt)}</tspan>' if k!="sp" else f'<tspan>{e(txt)}</tspan>') for k,txt in runs)
+        b+=(f'<text class="r" xml:space="preserve" x="{ax}" y="{ay+(i+1)*lh:.2f}" font-family="{MONO}" font-size="{fs:.2f}" '
+            f'textLength="{AW}" lengthAdjust="spacing" style="animation-delay:{i*0.035:.2f}s">{tsp}</text>\n')
+    b+='</g>'
+    # scan line
+    b+=(f'<rect x="{ax-8}" y="{ay}" width="{AW+16}" height="2" fill="{CY}" opacity=".55" filter="url(#glow)">'
+        f'<animate attributeName="y" values="{ay};{ay+len(rows)*lh:.0f};{ay}" dur="7s" repeatCount="indefinite"/></rect>')
+    # ID card
+    X=560; Wd=410
+    b+=f'<g class="f" style="animation-delay:.4s"><rect x="{X}" y="22" width="{Wd}" height="430" rx="16" fill="{PANEL}" fill-opacity=".92" stroke="{ACC}" stroke-opacity=".5"/></g>'
+    b+=ft(X+26,62,"ID.CARD",.6,size=12,fill=CY,weight="800",ls=5)
+    b+=ft(X+26,106,"James Tamayo",.8,size=36,fill=TXT,font=SERIF,weight="700",style="italic")
+    b+=ft(X+26,134,"AI-Enabled Full-Stack Developer",1.0,size=15,fill=LIGHT,weight="600")
+    b+=f'<rect x="{X+26}" y="148" width="0" height="3" rx="1.5" fill="url(#a)"><animate attributeName="width" from="0" to="120" begin="1.2s" dur=".9s" fill="freeze"/></rect>'
+    F=[("EDUCATION","BS in Information System"),("SCHOOL","Kolehiyo ng Lungsod ng Dasmariñas"),("YEARS","2023 to 2026 (Student)"),
+       ("LOCATION","Dasmariñas, Cavite, PH"),("BUILDS WITH","React · Laravel · Supabase · Node.js"),("DESIGNS IN","Figma  (UI / UX)")]
+    for i,(k,v) in enumerate(F):
+        y=190+i*44
+        b+=ft(X+26,y,k,1.2+i*.12,size=11,fill=MUT,weight="700",ls=3)+ft(X+26,y+21,v,1.3+i*.12,size=14,fill=TXT)
+    # design card
+    b+=f'<g class="f" style="animation-delay:1.8s"><rect x="{X}" y="470" width="{Wd}" height="120" rx="16" fill="#06102A" stroke="{LINE}"/>'
+    b+=f'<rect x="{X}" y="470" width="6" height="120" fill="url(#a)"/></g>'
+    b+=ft(X+28,508,"DESIGN  ×  CODE",2.0,size=12,fill=CY,weight="800",ls=4)
+    b+=ft(X+28,544,"Sketch it in Figma.",2.1,size=22,fill=TXT,font=SERIF,weight="700",style="italic")
+    b+=ft(X+28,574,"Ship it in code.",2.2,size=22,fill=LIGHT,font=SERIF,weight="700",style="italic")
+    # stat tiles
+    for i,(v,l) in enumerate([("5","projects"),("4","certs"),("2026","grad year")]):
+        x=X+i*140; y=610
+        b+=f'<g class="f" style="animation-delay:{2.3+i*.15}s"><rect x="{x}" y="{y}" width="130" height="78" rx="12" fill="{PANEL}" stroke="{ACC}" stroke-opacity=".5"/>'+t(x+16,y+38,v,26,LIGHT,weight="800")+t(x+16,y+60,l,12,MUT)+'</g>'
+        b+=sheen(x,y,130,78,12,3+i*.4)
+    wrap("ascii-portrait",w,H,b)
 
 # ---------- TITLES ----------
 def titles():
@@ -124,17 +178,17 @@ def titles():
 
 # ---------- ABOUT ----------
 def about():
-    w,h=1000,370; b=stars(w,h,18,11)
-    b+=f'<rect x="30" y="24" width="640" height="322" rx="14" fill="#06102A" stroke="{LINE}"/><rect x="30" y="24" width="640" height="38" rx="14" fill="{PANEL}"/><rect x="30" y="48" width="640" height="14" fill="{PANEL}"/>'
+    w,h=1000,420; b=stars(w,h,18,11)
+    b+=f'<rect x="30" y="24" width="640" height="372" rx="14" fill="#06102A" stroke="{LINE}"/><rect x="30" y="24" width="640" height="38" rx="14" fill="{PANEL}"/><rect x="30" y="48" width="640" height="14" fill="{PANEL}"/>'
     for i,c in enumerate(["#1E3A8A",ACC,CY]): b+=f'<circle cx="{54+i*20}" cy="43" r="5.5" fill="{c}"/>'
     b+=t(350,48,"~/james/about.sh",12,MUT,anchor="middle")
-    L=[("$ whoami",1),("> James Tamayo, AI-enabled Full-Stack Developer",0),("$ cat education.md",1),("> [B.Tech / B.S.] [Your Degree], [University], [CGPA]",0),
-       ("$ cat now.md",1),("> [Current role], [Start year] to [End year]",0),("$ ls shipped/",1),("> [Project 1]  [Project 2]  [Project 3]  [Project 4]",0),
-       ("$ echo $FOCUS",1),("> system design, cloud, applied AI",0)]
+    L=[("$ whoami",1),("> James Tamayo, AI-enabled Full-Stack Developer",0),("$ cat education.md",1),("> BS in Information System, Kolehiyo ng Lungsod ng Dasmariñas",0),
+       ("$ cat now.md",1),("> Student, 2023 to 2026  ·  Dasmariñas, Cavite, PH",0),("$ cat design.md",1),("> UI design in Figma, then built in React and Laravel",0),
+       ("$ ls shipped/",1),("> step22  pomonote  batify  folio-os  tagthr22",0),("$ echo $FOCUS",1),("> full-stack web, local-first apps, AI-assisted dev",0)]
     for i,(s,c) in enumerate(L):
         b+=typed(54,98+i*24.5,s,14,CY if c else (TXT if i==1 else MUT),0.4+i*0.75,weight="700" if c else "400")
-    b+=f'<rect class="bl" x="{54+len(L[-1][0])*8.4+4:.0f}" y="{98+9*24.5-12:.0f}" width="9" height="16" fill="{CY}"/>'
-    cx,cy=830,170
+    b+=f'<rect class="bl" x="{54+len(L[-1][0])*8.4+4:.0f}" y="{98+(len(L)-1)*24.5-12:.0f}" width="9" height="16" fill="{CY}"/>'
+    cx,cy=830,190
     b+=f'<circle cx="{cx}" cy="{cy}" r="104" fill="none" stroke="{ACC}" stroke-opacity=".6" stroke-dasharray="3 9"><animateTransform attributeName="transform" type="rotate" from="0 {cx} {cy}" to="360 {cx} {cy}" dur="30s" repeatCount="indefinite"/></circle>'
     b+=f'<circle cx="{cx}" cy="{cy}" r="88" fill="none" stroke="{CY}" stroke-opacity=".5" stroke-dasharray="40 14"><animateTransform attributeName="transform" type="rotate" from="360 {cx} {cy}" to="0 {cx} {cy}" dur="22s" repeatCount="indefinite"/></circle>'
     b+=f'<circle cx="{cx}" cy="{cy}" r="68" fill="{PANEL}" stroke="url(#a)" stroke-width="2" filter="url(#glow)"/>'
@@ -144,8 +198,8 @@ def about():
 
 # ---------- ACHIEVEMENTS ----------
 def achievements():
-    A=[("[Hackathon]","National Semi-Finalist","★",85),("[Hackathon 2]","Top 100 Team","◆",70),("[9.10]","CGPA","▲",91),
-       ("[400+]","LeetCode problems","●",80),("[400+]","GeeksforGeeks problems","■",78),("[5★]","HackerRank","✦",100)]
+    A=[("5","Featured projects","★",100),("6","User roles in STEP22","◆",100),("SHA-256","Tamper-evident ledger","▲",100),
+       ("4","Online certifications","●",100),("0","Accounts needed: Pomonote, Batify","■",100),("4","GitHub stars earned","✦",100)]
     b=stars(1000,340,16,5)
     for i,(v,l,ic,p) in enumerate(A):
         x=30+(i%3)*320; y=30+(i//3)*150; d=0.15*i
@@ -158,10 +212,11 @@ def achievements():
 
 # ---------- PROJECTS ----------
 def projects():
-    P=[("01","[Project 1: AI Document Assistant]","LLM Q&A and key-information extraction across many document types.",[("[500+]","documents"),("[92%]","accuracy"),("[60%]","less manual review")],["Python","NLP","LLM","REST API"],["Documents","LLM + NLP","Insights"]),
-       ("02","[Project 2: Payment Gateway]","UPI and card payments on a strict processing / success / failed state machine.",[("[1,000+]","transactions"),("[99.8%]","uptime"),("[3x]","throughput")],["Node.js","Express","PostgreSQL","React","Docker"],["Client","API Layer","Ledger DB"]),
-       ("03","[Project 3: AI Recommender]","Rules-first, explainable recommender with an optional LLM layer.",[("[Top 100]","hackathon"),("[Live]","demo"),("[Explainable]","by design")],["React","TypeScript","Go","PostgreSQL","Redis"],["Query","Rules Engine","Picks"]),
-       ("04","[Project 4: Multi-Tenant SaaS]","Tenant-scoped middleware with four-level JWT / RBAC.",[("[50+]","tenants"),("[0]","access incidents"),("[<2 min]","setup")],["Node.js","React","PostgreSQL","Docker Compose"],["Tenant","JWT + RBAC","Data"])]
+    P=[("01","STEP22: School Transparency Portal","Role-based governance and a tamper-evident financial ledger for KLD.",[("6","user roles"),("SHA-256","ledger chain"),("2-layer","access control")],["Laravel 12","React 18","Inertia.js","MySQL","Supabase Auth"],["Role-scoped UI","Laravel + RBAC","SHA-256 ledger"]),
+       ("02","Pomonote: Focus Timer + Tasks","Keyboard-first, local-first focus timer + tasks + notes. No account.",[("0","accounts needed"),("0","dependencies"),("MIT","licensed")],["JavaScript","Local-first","Keyboard-first"],["Timer","Tasks","Notes"]),
+       ("03","Batify: Letters, Wishes & Gifts","Birthday letters, wishes and gifts in one link. No signup.",[("1","link to share"),("0","signups"),("3","Supabase services")],["React","Supabase","Postgres","Edge Functions"],["React SPA","Edge Functions","Postgres+Storage"]),
+       ("04","folio-os","[One-line description of folio-os]",[("TypeScript","built with"),("1","GitHub star"),("Public","repository")],["TypeScript","[Add stack]"],["[Step 1]","[Step 2]","[Step 3]"]),
+       ("05","Tagthr22","[One-line description of Tagthr22]",[("TypeScript","built with"),("1","GitHub star"),("Public","repository")],["TypeScript","[Add stack]"],["[Step 1]","[Step 2]","[Step 3]"])]
     for n,(num,title,desc,m,chips,flow) in enumerate(P,1):
         w,h=1000,290; b=stars(w,h,10,n)
         b+=f'<rect x="0" y="0" width="7" height="{h}" fill="url(#a)"/>'
@@ -186,9 +241,9 @@ def projects():
 
 # ---------- TOOLKIT ----------
 def toolkit():
-    T=[("LANGUAGES",["[Language 1]","Python","JavaScript","TypeScript","SQL"]),("AI / ML",["LLMs","NLP","RAG","Prompt Eng.","[Other]"]),
-       ("FRONTEND",["React","Next.js","HTML","CSS","Tailwind"]),("BACKEND",["Node.js","Express","REST APIs","JWT","Microservices"]),
-       ("DATA / INFRA",["PostgreSQL","MongoDB","Docker","AWS","CI/CD"]),("TOOLS",["Git","GitHub","Postman","VS Code","[Other]"])]
+    T=[("LANGUAGES",["JavaScript","TypeScript","PHP","SQL","HTML / CSS"]),("AI-ENABLED",["AI-assisted dev","Prompt Eng.","LLM APIs"]),
+       ("FRONTEND",["React","Inertia.js","Tailwind","Vite"]),("BACKEND",["Laravel","Node.js","Express","REST APIs"]),
+       ("DATA / INFRA",["MySQL","PostgreSQL","SQLite","Supabase","GitHub Pages"]),("DESIGN / TOOLS",["Figma","UI Design","Git","GitHub","Composer"])]
     w,h=1000,470; b=stars(w,h,24,9)
     # constellation links
     for r in range(2):
@@ -210,8 +265,8 @@ def toolkit():
 
 # ---------- CERTS ----------
 def certs():
-    C=[f"[Certification {i}]" for i in range(1,9)]
-    w,h=1000,310; b=stars(w,h,14,4)
+    C=[f"[Online Certification {i}]" for i in range(1,5)]
+    w,h=1000,190; b=stars(w,h,10,4)
     for i,c in enumerate(C):
         x=30+(i%2)*480; y=30+(i//2)*68; d=0.1*i
         b+=f'<g class="f" style="animation-delay:{d}s"><rect x="{x}" y="{y}" width="450" height="54" rx="12" fill="{PANEL}" stroke="{ACC}" stroke-opacity=".4"/>'
@@ -232,4 +287,4 @@ def footer():
     b+=f'<rect class="bl" x="{500+len("Building systems that can explain themselves.")*4.8+8:.0f}" y="114" width="9" height="16" fill="{CY}"/>'
     wrap("footer-signature",w,h,b)
 
-hero(); titles(); about(); achievements(); projects(); toolkit(); certs(); footer()
+hero(); portrait(); titles(); about(); achievements(); projects(); toolkit(); certs(); footer()

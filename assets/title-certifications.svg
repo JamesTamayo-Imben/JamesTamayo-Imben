@@ -10,7 +10,9 @@
 @keyframes fl{to{stroke-dashoffset:-12}}
 .pu{animation:pu 2.8s ease-in-out infinite}
 @keyframes pu{0%,100%{opacity:.45}50%{opacity:1}}
-@media (prefers-reduced-motion:reduce){.f{opacity:1;animation:none}}
+.r{opacity:0;animation:r .6s ease forwards}
+@keyframes r{to{opacity:1}}
+@media (prefers-reduced-motion:reduce){.f,.r{opacity:1;animation:none}}
 </style>
 <defs>
 <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#050E2B"/><stop offset="1" stop-color="#040A1C"/></linearGradient>

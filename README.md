@@ -4,40 +4,48 @@
 
 <p align="center">
   <a href="https://github.com/JamesTamayo-Imben"><img src="https://img.shields.io/badge/GitHub-JamesTamayo--Imben-1D4ED8?style=for-the-badge&labelColor=040A1C&logoColor=E6EEFF&logo=github" alt="GitHub"></a>
-  <a href="https://www.linkedin.com/in/[your-linkedin]/"><img src="https://img.shields.io/badge/LinkedIn-James_Tamayo-1D4ED8?style=for-the-badge&labelColor=040A1C&logoColor=E6EEFF&logo=linkedin" alt="LinkedIn"></a>
-  <a href="https://leetcode.com/u/[your-leetcode]/"><img src="https://img.shields.io/badge/LeetCode-[your--handle]-1D4ED8?style=for-the-badge&labelColor=040A1C&logoColor=E6EEFF&logo=leetcode" alt="LeetCode"></a>
-  <a href="mailto:[your-email]"><img src="https://img.shields.io/badge/Email-[your--email]-1D4ED8?style=for-the-badge&labelColor=040A1C&logoColor=E6EEFF&logo=gmail" alt="Email"></a>
+  <a href="https://www.facebook.com/jam.es.968621"><img src="https://img.shields.io/badge/Facebook-James_Tamayo-1D4ED8?style=for-the-badge&labelColor=040A1C&logoColor=E6EEFF&logo=facebook" alt="Facebook"></a>
+  <a href="https://leetcode.com/u/James_Tamayo0604/"><img src="https://img.shields.io/badge/LeetCode-James__Tamayo0604-1D4ED8?style=for-the-badge&labelColor=040A1C&logoColor=E6EEFF&logo=leetcode" alt="LeetCode"></a>
+  <a href="mailto:jamesttamayo0604@gmail.com"><img src="https://img.shields.io/badge/Email-jamesttamayo0604@gmail.com-1D4ED8?style=for-the-badge&labelColor=040A1C&logoColor=E6EEFF&logo=gmail" alt="Email"></a>
 </p>
 
 <img src="assets/title-about.svg" width="100%" alt="01 About — Hello, I'm James.">
+<img src="assets/ascii-portrait.svg" width="100%" alt="ASCII portrait of James Tamayo with an ID card: BS in Information System at Kolehiyo ng Lungsod ng Dasmariñas, 2023 to 2026. Builds with React, Laravel, Supabase and designs in Figma.">
 <img src="assets/about-intro.svg" width="100%" alt="About: AI-enabled Full-Stack Developer. Education, current role, shipped projects and focus.">
 
 <img src="assets/title-recognition.svg" width="100%" alt="02 Recognition — Proof, on the record.">
-<!-- <img src="assets/achievements.svg" width="100%" alt="Hackathon results, CGPA and competitive programming stats."> -->
+<img src="assets/achievements.svg" width="100%" alt="By the numbers: featured projects, user roles, ledger integrity, licensing and GitHub stars.">
 
 <img src="assets/title-work.svg" width="100%" alt="03 Selected work — Products, not assignments.">
 
-<img src="assets/project-1.svg" width="100%" alt="Project 1: AI Document Assistant. Python, NLP, LLM, REST API.">
-
-<a href="https://github.com/JamesTamayo-Imben/[payment-gateway-repo]"><img src="assets/project-2.svg" width="100%" alt="Project 2: Payment Gateway. Node.js, Express, PostgreSQL, React, Docker."></a>
+<img src="assets/project-1.svg" width="100%" alt="STEP22: School Transparency and Engagement Portal for KLD. Laravel 12, React 18, Inertia.js, MySQL, Supabase Auth. Six user roles and a SHA-256 hash-chained ledger.">
 <p align="center">
-  <a href="https://github.com/JamesTamayo-Imben/[payment-gateway-repo]"><img src="https://img.shields.io/badge/Repository-Payment_Gateway-1E3A8A?style=for-the-badge&labelColor=040A1C&logoColor=E6EEFF&logo=github" alt="Repository"></a>
-  <a href="https://www.youtube.com/watch?v=[video-id]"><img src="https://img.shields.io/badge/Watch-Architecture_walkthrough-1E3A8A?style=for-the-badge&labelColor=040A1C&logoColor=E6EEFF&logo=youtube" alt="Walkthrough video"></a>
+  <img src="https://img.shields.io/badge/Repository-Private_case_study-1E3A8A?style=for-the-badge&labelColor=040A1C&logoColor=E6EEFF&logo=github" alt="Private repository">
 </p>
 
-<a href="https://github.com/JamesTamayo-Imben/[project-3-repo]"><img src="assets/project-3.svg" width="100%" alt="Project 3: AI Recommender. React, TypeScript, Go, PostgreSQL, Redis."></a>
+<a href="https://github.com/JamesTamayo-Imben/pomonote"><img src="assets/project-2.svg" width="100%" alt="Pomonote: keyboard-first, local-first focus timer, tasks and notes. No account, no dependencies. MIT licensed."></a>
 <p align="center">
-  <a href="https://[your-demo].vercel.app"><img src="https://img.shields.io/badge/Live_demo-[your--demo].vercel.app-1E3A8A?style=for-the-badge&labelColor=040A1C&logoColor=E6EEFF&logo=vercel" alt="Live demo"></a>
-  <a href="https://github.com/JamesTamayo-Imben/[project-3-repo]"><img src="https://img.shields.io/badge/Repository-Project_3-1E3A8A?style=for-the-badge&labelColor=040A1C&logoColor=E6EEFF&logo=github" alt="Repository"></a>
+  <a href="https://jamestamayo-imben.github.io/pomonote/"><img src="https://img.shields.io/badge/Live_site-pomonote-1E3A8A?style=for-the-badge&labelColor=040A1C&logoColor=E6EEFF&logo=githubpages" alt="Pomonote live site"></a>
+  <a href="https://github.com/JamesTamayo-Imben/pomonote"><img src="https://img.shields.io/badge/Repository-Pomonote-1E3A8A?style=for-the-badge&labelColor=040A1C&logoColor=E6EEFF&logo=github" alt="Pomonote repository"></a>
 </p>
 
-<a href="https://github.com/JamesTamayo-Imben/[saas-repo]"><img src="assets/project-4.svg" width="100%" alt="Project 4: Multi-Tenant SaaS. Node.js, React, PostgreSQL, Docker Compose."></a>
+<a href="https://github.com/JamesTamayo-Imben/Batify"><img src="assets/project-3.svg" width="100%" alt="Batify: birthday letters, wishes and gifts in one link, no signup. React SPA with Supabase Postgres, Storage and Edge Functions."></a>
 <p align="center">
-  <a href="https://github.com/JamesTamayo-Imben/[saas-repo]"><img src="https://img.shields.io/badge/Repository-Multi--Tenant_SaaS-1E3A8A?style=for-the-badge&labelColor=040A1C&logoColor=E6EEFF&logo=github" alt="Repository"></a>
+  <a href="https://github.com/JamesTamayo-Imben/Batify"><img src="https://img.shields.io/badge/Repository-Batify-1E3A8A?style=for-the-badge&labelColor=040A1C&logoColor=E6EEFF&logo=github" alt="Batify repository"></a>
+</p>
+
+<a href="https://github.com/JamesTamayo-Imben/folio-os"><img src="assets/project-4.svg" width="100%" alt="folio-os: TypeScript project."></a>
+<p align="center">
+  <a href="https://github.com/JamesTamayo-Imben/folio-os"><img src="https://img.shields.io/badge/Repository-folio--os-1E3A8A?style=for-the-badge&labelColor=040A1C&logoColor=E6EEFF&logo=github" alt="folio-os repository"></a>
+</p>
+
+<a href="https://github.com/JamesTamayo-Imben/Tagthr22"><img src="assets/project-5.svg" width="100%" alt="Tagthr22: TypeScript project."></a>
+<p align="center">
+  <a href="https://github.com/JamesTamayo-Imben/Tagthr22"><img src="https://img.shields.io/badge/Repository-Tagthr22-1E3A8A?style=for-the-badge&labelColor=040A1C&logoColor=E6EEFF&logo=github" alt="Tagthr22 repository"></a>
 </p>
 
 <img src="assets/title-toolkit.svg" width="100%" alt="04 Toolkit — The tools I reach for.">
-<img src="assets/toolkit.svg" width="100%" alt="Tech stack: languages, AI/ML, frontend, backend, data and infrastructure, tools.">
+<img src="assets/toolkit.svg" width="100%" alt="Tech stack: JavaScript, TypeScript, PHP, React, Laravel, Node.js, MySQL, PostgreSQL, Supabase, Git.">
 
 <img src="assets/title-commits.svg" width="100%" alt="05 Commit log — A year of building.">
 
@@ -50,14 +58,15 @@
 </p>
 
 <img src="assets/title-certifications.svg" width="100%" alt="06 Certifications — Credentials, verified.">
-<img src="assets/certifications.svg" width="100%" alt="List of certifications.">
+<img src="assets/certifications.svg" width="100%" alt="Four online certifications.">
 
 <img src="assets/title-connect.svg" width="100%" alt="07 Connect — Let's build something worth explaining.">
 
 <p align="center">
-  <a href="mailto:[your-email]"><img src="https://img.shields.io/badge/Email-[your--email]-1D4ED8?style=for-the-badge&labelColor=040A1C&logoColor=E6EEFF&logo=gmail" alt="Email"></a>
-  <a href="https://www.linkedin.com/in/[your-linkedin]/"><img src="https://img.shields.io/badge/LinkedIn-James_Tamayo-1D4ED8?style=for-the-badge&labelColor=040A1C&logoColor=E6EEFF&logo=linkedin" alt="LinkedIn"></a>
   <a href="https://github.com/JamesTamayo-Imben"><img src="https://img.shields.io/badge/GitHub-JamesTamayo--Imben-1D4ED8?style=for-the-badge&labelColor=040A1C&logoColor=E6EEFF&logo=github" alt="GitHub"></a>
+  <a href="https://www.facebook.com/jam.es.968621"><img src="https://img.shields.io/badge/Facebook-James_Tamayo-1D4ED8?style=for-the-badge&labelColor=040A1C&logoColor=E6EEFF&logo=facebook" alt="Facebook"></a>
+  <a href="https://leetcode.com/u/James_Tamayo0604/"><img src="https://img.shields.io/badge/LeetCode-James__Tamayo0604-1D4ED8?style=for-the-badge&labelColor=040A1C&logoColor=E6EEFF&logo=leetcode" alt="LeetCode"></a>
+  <a href="mailto:jamesttamayo0604@gmail.com"><img src="https://img.shields.io/badge/Email-jamesttamayo0604@gmail.com-1D4ED8?style=for-the-badge&labelColor=040A1C&logoColor=E6EEFF&logo=gmail" alt="Email"></a>
 </p>
 
 <a href="https://github.com/JamesTamayo-Imben">
