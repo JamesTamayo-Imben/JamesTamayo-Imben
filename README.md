@@ -59,7 +59,7 @@
 
 <img src="assets/title-certifications.svg" width="100%" alt="06 Certifications — Credentials, verified.">
 <p align="center">
-  <a href="https://drive.google.com/file/d/FILE_ID_1/view?usp=sharing"><img src="assets/cert-1.svg" width="49%" alt="Certification 1 — click to view"></a>
+  <a href="https://drive.google.com/file/d/1rm0vM_M6UXmaVhQ5w7uSMMP9n35cL7JJ/view?usp=drive_link"><img src="assets/cert-1.svg" width="49%" alt="Certification 1 — click to view"></a>
   <a href="https://drive.google.com/file/d/FILE_ID_2/view?usp=sharing"><img src="assets/cert-2.svg" width="49%" alt="Certification 2 — click to view"></a>
   <a href="https://drive.google.com/file/d/FILE_ID_3/view?usp=sharing"><img src="assets/cert-3.svg" width="49%" alt="Certification 3 — click to view"></a>
   <a href="https://drive.google.com/file/d/FILE_ID_4/view?usp=sharing"><img src="assets/cert-4.svg" width="49%" alt="Certification 4 — click to view"></a>
