@@ -13,7 +13,7 @@
 <img src="assets/about-intro.svg" width="100%" alt="About: AI-enabled Full-Stack Developer. Education, current role, shipped projects and focus.">
 
 <img src="assets/title-recognition.svg" width="100%" alt="02 Recognition — Proof, on the record.">
-<img src="assets/achievements.svg" width="100%" alt="Hackathon results, CGPA and competitive programming stats.">
+<!-- <img src="assets/achievements.svg" width="100%" alt="Hackathon results, CGPA and competitive programming stats."> -->
 
 <img src="assets/title-work.svg" width="100%" alt="03 Selected work — Products, not assignments.">
 
