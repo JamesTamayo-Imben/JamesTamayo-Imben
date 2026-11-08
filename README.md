@@ -2,16 +2,8 @@
   <img src="assets/james-hero-banner.svg" width="100%" alt="James Tamayo — AI-Enabled Full-Stack Developer. Engineering intelligence. Shipping products people can trust.">
 </a>
 
-<p align="center">
-  <a href="https://github.com/JamesTamayo-Imben"><img src="https://img.shields.io/badge/GitHub-JamesTamayo--Imben-1D4ED8?style=for-the-badge&labelColor=040A1C&logoColor=E6EEFF&logo=github" alt="GitHub"></a>
-  <a href="https://www.facebook.com/jam.es.968621"><img src="https://img.shields.io/badge/Facebook-James_Tamayo-1D4ED8?style=for-the-badge&labelColor=040A1C&logoColor=E6EEFF&logo=facebook" alt="Facebook"></a>
-  <a href="https://leetcode.com/u/James_Tamayo0604/"><img src="https://img.shields.io/badge/LeetCode-James__Tamayo0604-1D4ED8?style=for-the-badge&labelColor=040A1C&logoColor=E6EEFF&logo=leetcode" alt="LeetCode"></a>
-  <a href="mailto:jamesttamayo0604@gmail.com"><img src="https://img.shields.io/badge/Email-jamesttamayo0604@gmail.com-1D4ED8?style=for-the-badge&labelColor=040A1C&logoColor=E6EEFF&logo=gmail" alt="Email"></a>
-</p>
-
 <img src="assets/title-about.svg" width="100%" alt="01 About — Hello, I'm James.">
 <img src="assets/ascii-portrait.svg" width="100%" alt="ASCII portrait of James Tamayo with an ID card: BS in Information System at Kolehiyo ng Lungsod ng Dasmariñas, 2023 to 2026. Builds with React, Laravel, Supabase and designs in Figma.">
-<img src="assets/about-intro.svg" width="100%" alt="About: AI-enabled Full-Stack Developer. Education, current role, shipped projects and focus.">
 
 <img src="assets/title-recognition.svg" width="100%" alt="02 Recognition — Proof, on the record.">
 <img src="assets/achievements.svg" width="100%" alt="By the numbers: featured projects, user roles, ledger integrity, licensing and GitHub stars.">

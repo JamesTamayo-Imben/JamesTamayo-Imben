@@ -191,26 +191,6 @@ def titles():
         b+=f'<circle r="3" fill="#fff"><animateMotion path="M850 62 H975" dur="2.2s" repeatCount="indefinite"/></circle>'
         wrap(f"title-{n}",1000,125,b)
 
-# ---------- ABOUT ----------
-def about():
-    w,h=1000,420; b=stars(w,h,18,11)
-    b+=f'<rect x="30" y="24" width="640" height="372" rx="14" fill="#06102A" stroke="{LINE}"/><rect x="30" y="24" width="640" height="38" rx="14" fill="{PANEL}"/><rect x="30" y="48" width="640" height="14" fill="{PANEL}"/>'
-    for i,c in enumerate(["#1E3A8A",ACC,CY]): b+=f'<circle cx="{54+i*20}" cy="43" r="5.5" fill="{c}"/>'
-    b+=t(350,48,"~/james/about.sh",12,MUT,anchor="middle")
-    L=[("$ whoami",1),("> James Tamayo, AI-enabled Full-Stack Developer",0),("$ cat education.md",1),("> BS in Information System, Kolehiyo ng Lungsod ng Dasmariñas",0),
-       ("$ cat now.md",1),(f"> Student, 2023 to 2026  ·  {LOCATION}",0),("$ cat design.md",1),("> UI design in Figma, then built in React and Laravel",0),
-       ("$ ls shipped/",1),("> step22  pomonote  batify  folio-os  tagthr22",0),("$ echo $FOCUS",1),("> full-stack web, local-first apps, AI-assisted dev",0)]
-    for i,(s,c) in enumerate(L):
-        b+=typed(54,98+i*24.5,s,14,CY if c else (TXT if i==1 else MUT),0.4+i*0.75,weight="700" if c else "400")
-    b+=f'<rect class="bl" x="{54+len(L[-1][0])*8.4+4:.0f}" y="{98+(len(L)-1)*24.5-12:.0f}" width="9" height="16" fill="{CY}"/>'
-    cx,cy=830,190
-    b+=f'<circle cx="{cx}" cy="{cy}" r="104" fill="none" stroke="{ACC}" stroke-opacity=".6" stroke-dasharray="3 9"><animateTransform attributeName="transform" type="rotate" from="0 {cx} {cy}" to="360 {cx} {cy}" dur="30s" repeatCount="indefinite"/></circle>'
-    b+=f'<circle cx="{cx}" cy="{cy}" r="88" fill="none" stroke="{CY}" stroke-opacity=".5" stroke-dasharray="40 14"><animateTransform attributeName="transform" type="rotate" from="360 {cx} {cy}" to="0 {cx} {cy}" dur="22s" repeatCount="indefinite"/></circle>'
-    b+=f'<circle cx="{cx}" cy="{cy}" r="68" fill="{PANEL}" stroke="url(#a)" stroke-width="2" filter="url(#glow)"/>'
-    b+=f'<text x="{cx}" y="{cy+19}" text-anchor="middle" font-family="{MONO}" font-size="{TYPE_SCALE["display"]}" font-weight="800" fill="url(#tx)">JT</text>'
-    b+=t(cx,cy+142,"AI  ×  FULL-STACK",13,LIGHT,weight="700",anchor="middle",ls=3)+t(cx,cy+164,LOCATION,12,MUT,anchor="middle")
-    wrap("about-intro",w,h,b)
-
 # ---------- ACHIEVEMENTS ----------
 def achievement_icon(x,y,kind):
     paths={
@@ -330,4 +310,4 @@ def footer():
     b+=f'<rect class="bl" x="{500+len("Building systems that can explain themselves.")*4.8+8:.0f}" y="114" width="9" height="16" fill="{CY}"/>'
     wrap("footer-signature",w,h,b)
 
-hero(); portrait(); titles(); about(); achievements(); projects(); toolkit(); certs(); footer()
+hero(); portrait(); titles(); achievements(); projects(); toolkit(); certs(); footer()
