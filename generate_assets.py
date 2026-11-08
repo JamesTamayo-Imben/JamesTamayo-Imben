@@ -3,8 +3,14 @@ from html import escape as e
 BG="#040A1C"; PANEL="#0A1633"; LINE="#16295A"; ACC="#3B82F6"; LIGHT="#93C5FD"; CY="#22D3EE"; TXT="#E6EEFF"; MUT="#8FA3C7"
 MONO="'JetBrains Mono','Fira Code',Consolas,'Courier New',monospace"
 SERIF="Georgia,'Palatino Linotype','Times New Roman',serif"
+TYPE_SCALE={"micro":10,"caption":12,"label":14,"body":16,"lead":20,"subhead":24,
+            "heading":32,"display":48,"hero":64,"index":96}
+TYPE_STEPS=tuple(TYPE_SCALE.values())
 _id=[0]
 def uid(): _id[0]+=1; return f"u{_id[0]}"
+
+def type_size(size):
+    return min(TYPE_STEPS,key=lambda step:abs(step-size))
 
 STYLE="""<style>
 .f{opacity:0;animation:f .9s ease forwards}
@@ -49,13 +55,14 @@ def wrap(name,w,h,body,orbs=True,big=False):
 </svg>'''
     open(f"assets/{name}.svg","w").write(s)
 
-def t(x,y,s,size=16,fill=TXT,font=MONO,weight="400",style="normal",anchor="start",ls=0,extra=""):
-    return f'<text x="{x}" y="{y}" font-family="{font}" font-size="{size}" fill="{fill}" font-weight="{weight}" font-style="{style}" text-anchor="{anchor}" letter-spacing="{ls}" {extra}>{e(s)}</text>\n'
+def t(x,y,s,size=TYPE_SCALE["body"],fill=TXT,font=MONO,weight="400",style="normal",anchor="start",ls=0,extra=""):
+    return f'<text x="{x}" y="{y}" font-family="{font}" font-size="{type_size(size)}" fill="{fill}" font-weight="{weight}" font-style="{style}" text-anchor="{anchor}" letter-spacing="{ls}" {extra}>{e(s)}</text>\n'
 
 def ft(x,y,s,delay=0,**k):
     return t(x,y,s,extra=f'class="f" style="animation-delay:{delay}s"',**k)
 
 def typed(x,y,s,size,fill,begin,weight="400"):
+    size=type_size(size)
     cw=size*0.6; n=len(s); i=uid()
     vals=";".join(str(round(j*cw)) for j in range(n+2))
     dur=max(0.4,n*0.03)
@@ -69,6 +76,7 @@ def stars(w,h,n,seed):
     return o
 
 def pill(x,y,s,size=13,delay=0,stroke=ACC,fill=PANEL):
+    size=type_size(size)
     w=len(s)*size*0.6+24; h=size+16
     return (f'<g class="f" style="animation-delay:{delay}s"><rect x="{x}" y="{y}" width="{w:.0f}" height="{h}" rx="{h/2}" fill="{fill}" stroke="{stroke}" stroke-opacity=".8"/>'
             + t(x+w/2,y+h/2+size*0.35,s,size,TXT,anchor="middle")+'</g>'), w
@@ -84,7 +92,7 @@ def hero():
     w,h=1000,440; b=stars(w,h,34,7)
     for i,c in enumerate(["#1E3A8A",ACC,CY]): b+=f'<circle cx="{40+i*22}" cy="38" r="6" fill="{c}"/>'
     b+=typed(40,104,"> npm run build --intelligence",16,CY,0.3)
-    b+=f'<text x="40" y="184" font-family="{MONO}" font-size="66" font-weight="800" fill="url(#tx)" filter="url(#glow)" class="f" style="animation-delay:1.2s">JAMES TAMAYO</text>'
+    b+=f'<text x="40" y="184" font-family="{MONO}" font-size="{TYPE_SCALE["hero"]}" font-weight="800" fill="url(#tx)" filter="url(#glow)" class="f" style="animation-delay:1.2s">JAMES TAMAYO</text>'
     b+=f'<rect x="42" y="204" width="0" height="4" rx="2" fill="url(#a)"><animate attributeName="width" from="0" to="280" begin="1.6s" dur="1s" fill="freeze"/></rect>'
     b+=ft(40,254,"AI-Enabled Full-Stack Developer",1.8,size=25,fill=LIGHT,weight="600",ls=1)
     b+=ft(40,292,"I design in Figma. I build with AI-assisted code. I ship.",2.1,size=19,fill=MUT,font=SERIF,style="italic")
@@ -192,19 +200,32 @@ def about():
     b+=f'<circle cx="{cx}" cy="{cy}" r="104" fill="none" stroke="{ACC}" stroke-opacity=".6" stroke-dasharray="3 9"><animateTransform attributeName="transform" type="rotate" from="0 {cx} {cy}" to="360 {cx} {cy}" dur="30s" repeatCount="indefinite"/></circle>'
     b+=f'<circle cx="{cx}" cy="{cy}" r="88" fill="none" stroke="{CY}" stroke-opacity=".5" stroke-dasharray="40 14"><animateTransform attributeName="transform" type="rotate" from="360 {cx} {cy}" to="0 {cx} {cy}" dur="22s" repeatCount="indefinite"/></circle>'
     b+=f'<circle cx="{cx}" cy="{cy}" r="68" fill="{PANEL}" stroke="url(#a)" stroke-width="2" filter="url(#glow)"/>'
-    b+=f'<text x="{cx}" y="{cy+19}" text-anchor="middle" font-family="{MONO}" font-size="54" font-weight="800" fill="url(#tx)">JT</text>'
+    b+=f'<text x="{cx}" y="{cy+19}" text-anchor="middle" font-family="{MONO}" font-size="{TYPE_SCALE["display"]}" font-weight="800" fill="url(#tx)">JT</text>'
     b+=t(cx,cy+142,"AI  ×  FULL-STACK",13,LIGHT,weight="700",anchor="middle",ls=3)+t(cx,cy+164,"[Your City, Country]",12,MUT,anchor="middle")
     wrap("about-intro",w,h,b)
 
 # ---------- ACHIEVEMENTS ----------
+def achievement_icon(x,y,kind):
+    paths={
+        "projects":'<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 7h.01M11 7h.01M8 13h8M8 16h5"/>',
+        "roles":'<circle cx="9" cy="8" r="3"/><path d="M3.5 19v-1.5a5.5 5.5 0 0 1 11 0V19zM16 5.5a3 3 0 0 1 0 5.8M17 14a4.5 4.5 0 0 1 3.5 4.4V19h-3"/>',
+        "ledger":'<path d="M6 3.5h8l4 4V14"/><path d="M14 3.5v4h4M6 3.5v17h6"/><path d="M9 11h6M9 14h4"/><path d="m14 18 2 2 4-4"/>',
+        "certificate":'<circle cx="12" cy="10" r="7"/><path d="m8 16-1 5 5-2 5 2-1-5M9 10l2 2 4-4"/>',
+        "local":'<rect x="4" y="5" width="16" height="14" rx="2"/><path d="M8 9h8M8 13h5M9 19v2m6-2v2"/>',
+        "stars":'<path d="m12 3 2.7 5.5 6.1.9-4.4 4.3 1 6.1-5.4-2.9-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/>'
+    }
+    return (f'<g transform="translate({x-12} {y-12})" fill="none" stroke="{CY}" stroke-width="1.7" '
+            f'stroke-linecap="round" stroke-linejoin="round">{paths[kind]}</g>')
+
 def achievements():
-    A=[("5","Featured projects","★",100),("6","User roles in STEP22","◆",100),("SHA-256","Tamper-evident ledger","▲",100),
-       ("4","Online certifications","●",100),("0","Accounts needed: Pomonote, Batify","■",100),("4","GitHub stars earned","✦",100)]
+    A=[("5","Featured projects","projects",100),("6","User roles in STEP22","roles",100),
+       ("SHA-256","Tamper-evident ledger","ledger",100),("4","Online certifications","certificate",100),
+       ("0","Accounts needed: Pomonote, Batify","local",100),("4","GitHub stars earned","stars",100)]
     b=stars(1000,340,16,5)
     for i,(v,l,ic,p) in enumerate(A):
         x=30+(i%3)*320; y=30+(i//3)*150; d=0.15*i
         b+=f'<g class="f" style="animation-delay:{d}s"><rect x="{x}" y="{y}" width="300" height="130" rx="14" fill="{PANEL}" stroke="{ACC}" stroke-opacity=".45"/>'
-        b+=f'<circle cx="{x+40}" cy="{y+42}" r="20" fill="none" stroke="{CY}" stroke-opacity=".7" class="pu" style="animation-delay:{d}s"/>'+t(x+40,y+50,ic,18,CY,anchor="middle")
+        b+=f'<circle cx="{x+40}" cy="{y+42}" r="20" fill="none" stroke="{CY}" stroke-opacity=".7" class="pu" style="animation-delay:{d}s"/>'+achievement_icon(x+40,y+42,ic)
         b+=t(x+76,y+50,v,28,LIGHT,weight="800")+t(x+24,y+90,l,15,MUT,SERIF,style="italic")
         b+=f'<rect x="{x+24}" y="{y+106}" width="252" height="5" rx="2.5" fill="#0D1F4D"/><rect x="{x+24}" y="{y+106}" width="0" height="5" rx="2.5" fill="url(#a)"><animate attributeName="width" from="0" to="{252*p/100:.0f}" begin="{1+d}s" dur="1.2s" fill="freeze"/></rect></g>'
         b+=sheen(x,y,300,130,14,d+1)
@@ -282,7 +303,7 @@ def footer():
         seg=" t125 0"*12
         b+=(f'<path d="M0 {yy} q62.5 -{amp} 125 0{seg} V{h} H0Z" fill="{col}" opacity="{op}">'
             f'<animateTransform attributeName="transform" type="translate" from="0 0" to="-250 0" dur="{dur}s" repeatCount="indefinite"/></path>')
-    b+=f'<text x="500" y="92" text-anchor="middle" font-family="{SERIF}" font-size="46" font-weight="700" font-style="italic" fill="url(#tx)" filter="url(#glow)">James Tamayo</text>'
+    b+=f'<text x="500" y="92" text-anchor="middle" font-family="{SERIF}" font-size="{TYPE_SCALE["display"]}" font-weight="700" font-style="italic" fill="url(#tx)" filter="url(#glow)">James Tamayo</text>'
     b+=t(500,128,"Building systems that can explain themselves.",16,LIGHT,anchor="middle",ls=1)
     b+=f'<rect class="bl" x="{500+len("Building systems that can explain themselves.")*4.8+8:.0f}" y="114" width="9" height="16" fill="{CY}"/>'
     wrap("footer-signature",w,h,b)
