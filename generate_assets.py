@@ -53,7 +53,8 @@ def wrap(name,w,h,body,orbs=True,big=False):
 </g>
 <rect x=".5" y=".5" width="{w-1}" height="{h-1}" rx="18" fill="none" stroke="{LINE}"/>
 </svg>'''
-    open(f"assets/{name}.svg","w").write(s)
+    with open(f"assets/{name}.svg","w",encoding="utf-8") as asset:
+        asset.write(s)
 
 def t(x,y,s,size=TYPE_SCALE["body"],fill=TXT,font=MONO,weight="400",style="normal",anchor="start",ls=0,extra=""):
     return f'<text x="{x}" y="{y}" font-family="{font}" font-size="{type_size(size)}" fill="{fill}" font-weight="{weight}" font-style="{style}" text-anchor="{anchor}" letter-spacing="{ls}" {extra}>{e(s)}</text>\n'
