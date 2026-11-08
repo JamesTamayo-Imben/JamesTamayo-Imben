@@ -1,6 +1,7 @@
 import random
 from html import escape as e
 BG="#040A1C"; PANEL="#0A1633"; LINE="#16295A"; ACC="#3B82F6"; LIGHT="#93C5FD"; CY="#22D3EE"; TXT="#E6EEFF"; MUT="#8FA3C7"
+LOCATION="Dasmariñas, Cavite, PH"
 MONO="'JetBrains Mono','Fira Code',Consolas,'Courier New',monospace"
 SERIF="Georgia,'Palatino Linotype','Times New Roman',serif"
 TYPE_SCALE={"micro":10,"caption":12,"label":14,"body":16,"lead":20,"subhead":24,
@@ -100,7 +101,7 @@ def hero():
     x=40
     for i,c in enumerate(["AI-assisted","React","Laravel","Figma","Supabase","MySQL"]):
         p,pw=pill(x,322,c,13,2.4+i*0.15); b+=p; x+=pw+10
-    b+=f'<circle class="pu" cx="48" cy="404" r="5" fill="{CY}"/>'+ft(62,409,"BSIS student  ·  Dasmariñas, Cavite, PH",2.9,size=13,fill=MUT)
+    b+=f'<circle class="pu" cx="48" cy="404" r="5" fill="{CY}"/>'+ft(62,409,f"BSIS student  ·  {LOCATION}",2.9,size=13,fill=MUT)
     # neural net
     layers=[(690,3),(775,5),(860,5),(945,3)]; pts=[]
     for lx,n in layers: pts.append([(lx,220+(k-(n-1)/2)*54) for k in range(n)])
@@ -153,7 +154,7 @@ def portrait():
     b+=ft(X+26,134,"AI-Enabled Full-Stack Developer",1.0,size=15,fill=LIGHT,weight="600")
     b+=f'<rect x="{X+26}" y="148" width="0" height="3" rx="1.5" fill="url(#a)"><animate attributeName="width" from="0" to="120" begin="1.2s" dur=".9s" fill="freeze"/></rect>'
     F=[("EDUCATION","BS in Information System"),("SCHOOL","Kolehiyo ng Lungsod ng Dasmariñas"),("YEARS","2023 to 2026 (Student)"),
-       ("LOCATION","Dasmariñas, Cavite, PH"),("BUILDS WITH","React · Laravel · Supabase · Node.js"),("DESIGNS IN","Figma  (UI / UX)")]
+       ("LOCATION",LOCATION),("BUILDS WITH","React · Laravel · Supabase · Node.js"),("DESIGNS IN","Figma  (UI / UX)")]
     for i,(k,v) in enumerate(F):
         y=190+i*44
         b+=ft(X+26,y,k,1.2+i*.12,size=11,fill=MUT,weight="700",ls=3)+ft(X+26,y+21,v,1.3+i*.12,size=14,fill=TXT)
@@ -192,7 +193,7 @@ def about():
     for i,c in enumerate(["#1E3A8A",ACC,CY]): b+=f'<circle cx="{54+i*20}" cy="43" r="5.5" fill="{c}"/>'
     b+=t(350,48,"~/james/about.sh",12,MUT,anchor="middle")
     L=[("$ whoami",1),("> James Tamayo, AI-enabled Full-Stack Developer",0),("$ cat education.md",1),("> BS in Information System, Kolehiyo ng Lungsod ng Dasmariñas",0),
-       ("$ cat now.md",1),("> Student, 2023 to 2026  ·  Dasmariñas, Cavite, PH",0),("$ cat design.md",1),("> UI design in Figma, then built in React and Laravel",0),
+       ("$ cat now.md",1),(f"> Student, 2023 to 2026  ·  {LOCATION}",0),("$ cat design.md",1),("> UI design in Figma, then built in React and Laravel",0),
        ("$ ls shipped/",1),("> step22  pomonote  batify  folio-os  tagthr22",0),("$ echo $FOCUS",1),("> full-stack web, local-first apps, AI-assisted dev",0)]
     for i,(s,c) in enumerate(L):
         b+=typed(54,98+i*24.5,s,14,CY if c else (TXT if i==1 else MUT),0.4+i*0.75,weight="700" if c else "400")
@@ -202,7 +203,7 @@ def about():
     b+=f'<circle cx="{cx}" cy="{cy}" r="88" fill="none" stroke="{CY}" stroke-opacity=".5" stroke-dasharray="40 14"><animateTransform attributeName="transform" type="rotate" from="360 {cx} {cy}" to="0 {cx} {cy}" dur="22s" repeatCount="indefinite"/></circle>'
     b+=f'<circle cx="{cx}" cy="{cy}" r="68" fill="{PANEL}" stroke="url(#a)" stroke-width="2" filter="url(#glow)"/>'
     b+=f'<text x="{cx}" y="{cy+19}" text-anchor="middle" font-family="{MONO}" font-size="{TYPE_SCALE["display"]}" font-weight="800" fill="url(#tx)">JT</text>'
-    b+=t(cx,cy+142,"AI  ×  FULL-STACK",13,LIGHT,weight="700",anchor="middle",ls=3)+t(cx,cy+164,"[Your City, Country]",12,MUT,anchor="middle")
+    b+=t(cx,cy+142,"AI  ×  FULL-STACK",13,LIGHT,weight="700",anchor="middle",ls=3)+t(cx,cy+164,LOCATION,12,MUT,anchor="middle")
     wrap("about-intro",w,h,b)
 
 # ---------- ACHIEVEMENTS ----------
