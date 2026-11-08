@@ -91,8 +91,7 @@ def sheen(x,y,w,h,r,delay=0):
 
 # ---------- HERO ----------
 def hero():
-    w,h=1000,440; b=stars(w,h,34,7)
-    for i,c in enumerate(["#1E3A8A",ACC,CY]): b+=f'<circle cx="{40+i*22}" cy="38" r="6" fill="{c}"/>'
+    w,h=1000,440; b=''
     b+=typed(40,104,"> npm run build --intelligence",16,CY,0.3)
     b+=f'<text x="40" y="184" font-family="{MONO}" font-size="{TYPE_SCALE["hero"]}" font-weight="800" fill="url(#tx)" filter="url(#glow)" class="f" style="animation-delay:1.2s">JAMES TAMAYO</text>'
     b+=f'<rect x="42" y="204" width="0" height="4" rx="2" fill="url(#a)"><animate attributeName="width" from="0" to="280" begin="1.6s" dur="1s" fill="freeze"/></rect>'
@@ -102,20 +101,26 @@ def hero():
     for i,c in enumerate(["AI-assisted","React","Laravel","Figma","Supabase","MySQL"]):
         p,pw=pill(x,322,c,13,2.4+i*0.15); b+=p; x+=pw+10
     b+=f'<circle class="pu" cx="48" cy="404" r="5" fill="{CY}"/>'+ft(62,409,f"BSIS student  ·  {LOCATION}",2.9,size=13,fill=MUT)
-    # neural net
-    layers=[(690,3),(775,5),(860,5),(945,3)]; pts=[]
-    for lx,n in layers: pts.append([(lx,220+(k-(n-1)/2)*54) for k in range(n)])
-    r=random.Random(3); k=0
-    for a,bb in zip(pts,pts[1:]):
-        for p in a:
-            for q in bb:
-                k+=1
-                if k%3==0: b+=f'<line class="fl" x1="{p[0]}" y1="{p[1]}" x2="{q[0]}" y2="{q[1]}" stroke="{CY}" stroke-opacity=".7" style="animation-delay:{r.random():.2f}s"/>'
-                else: b+=f'<line x1="{p[0]}" y1="{p[1]}" x2="{q[0]}" y2="{q[1]}" stroke="{ACC}" stroke-opacity=".22"/>'
-    for L in pts:
-        for p in L:
-            b+=f'<circle class="pu" cx="{p[0]}" cy="{p[1]}" r="8" fill="{PANEL}" stroke="{CY}" stroke-width="2" style="animation-delay:{r.random()*2:.2f}s" filter="url(#glow)"/>'
-    b+=t(690,372,"INPUT",11,MUT,ls=3,anchor="middle")+t(945,372,"OUTPUT",11,MUT,ls=3,anchor="middle")+t(817,372,"HIDDEN LAYERS",11,MUT,ls=3,anchor="middle")
+    b+=t(672,112,"STEP22  /  TRUST TRACE",11,CY,weight="800",ls=2)
+    b+='<path d="M682 158v176" fill="none" stroke="#1B3170" stroke-width="2"/>'
+    trace=[
+        (174,"01","ROLE CHECK","Six roles. One scoped view.","role"),
+        (250,"02","LEDGER ENTRY","Financial records, linked by hash.","entry"),
+        (326,"03","PROOF CHAIN","SHA-256 makes changes visible.","proof")
+    ]
+    trace_icons={
+        "role":'<path d="M12 2.8 20 6v5.2c0 5-3.4 8.5-8 10-4.6-1.5-8-5-8-10V6z"/><circle cx="12" cy="9" r="2"/><path d="M8.5 16a3.5 3.5 0 0 1 7 0"/>',
+        "entry":'<path d="M7 3.5h7l4 4V20H7z"/><path d="M14 3.5v4h4M10 12h5M10 15h5"/>',
+        "proof":'<path d="M8.5 8.5 6 6a3 3 0 0 0-4 4l4 4a3 3 0 0 0 4 0l2-2"/><path d="m15.5 15.5 2.5 2.5a3 3 0 0 0 4-4l-4-4a3 3 0 0 0-4 0l-2 2"/><path d="m9 15 6-6"/>'
+    }
+    for y,num,title,detail,kind in trace:
+        b+=f'<circle cx="682" cy="{y}" r="16" fill="{PANEL}" stroke="{ACC}" stroke-opacity=".7"/>'
+        b+=f'<g transform="translate(672 {y-10})" fill="none" stroke="{CY}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">{trace_icons[kind]}</g>'
+        b+=t(716,y-5,num,10,CY,weight="700")+t(746,y-5,title,15,TXT,weight="700")
+        b+=t(746,y+18,detail,12,MUT,font=SERIF,style="italic")
+        if y != 326:
+            b+=f'<line x1="716" y1="{y+34}" x2="960" y2="{y+34}" stroke="{LINE}" stroke-dasharray="2 6"/>'
+    b+=t(816,374,"RBAC  /  SHA-256 CHAIN",10,MUT,ls=1,anchor="middle")
     b+=f'<rect x="0" y="{h-4}" width="{w}" height="4" fill="url(#a)" opacity=".8"/>'
     wrap("james-hero-banner",w,h,b,big=True)
 
@@ -263,20 +268,35 @@ def projects():
         wrap(f"project-{n}",w,h,b)
 
 # ---------- TOOLKIT ----------
+def toolkit_icon(x,y,kind):
+    paths={
+        "languages":'<path d="m8 5-6 7 6 7M16 5l6 7-6 7M14 4l-4 16"/>',
+        "ai":'<path d="m12 2.8 1.9 6.3 6.3 1.9-6.3 1.9-1.9 6.3-1.9-6.3-6.3-1.9 6.3-1.9z"/><path d="M19 3v3m-1.5-1.5h3M4 17v4m-2-2h4"/>',
+        "frontend":'<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 9v11"/>',
+        "backend":'<rect x="4" y="3" width="16" height="8" rx="1.5"/><rect x="4" y="13" width="16" height="8" rx="1.5"/><path d="M8 7h.01M8 17h.01M12 7h4M12 17h4"/>',
+        "data":'<ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/>',
+        "design":'<path d="m4 20 4.5-1 10-10L15 5.5 5 15.5 4 20Z"/><path d="m13.5 7 3.5 3.5M4 20l4-1"/>'
+    }
+    return (f'<g transform="translate({x-11} {y-11})" fill="none" stroke="{CY}" stroke-width="1.5" '
+            f'stroke-linecap="round" stroke-linejoin="round">{paths[kind]}</g>')
+
 def toolkit():
-    T=[("LANGUAGES",["JavaScript","TypeScript","PHP","SQL","HTML / CSS"]),("AI-ENABLED",["AI-assisted dev","Prompt Eng.","LLM APIs"]),
-       ("FRONTEND",["React","Inertia.js","Tailwind","Vite"]),("BACKEND",["Laravel","Node.js","Express","REST APIs"]),
-       ("DATA / INFRA",["MySQL","PostgreSQL","SQLite","Supabase","GitHub Pages"]),("DESIGN / TOOLS",["Figma","UI Design","Git","GitHub","Composer"])]
+    T=[("LANGUAGES","languages",["JavaScript","TypeScript","PHP","SQL","HTML / CSS"]),
+       ("AI-ENABLED","ai",["AI-assisted dev","Prompt Eng.","LLM APIs"]),
+       ("FRONTEND","frontend",["React","Inertia.js","Tailwind","Vite"]),
+       ("BACKEND","backend",["Laravel","Node.js","Express","REST APIs"]),
+       ("DATA / INFRA","data",["MySQL","PostgreSQL","SQLite","Supabase","GitHub Pages"]),
+       ("DESIGN / TOOLS","design",["Figma","UI Design","Git","GitHub","Composer"])]
     w,h=1000,470; b=stars(w,h,24,9)
     # constellation links
     for r in range(2):
         yy=125+r*210; b+=f'<line class="fl" x1="180" y1="{yy}" x2="820" y2="{yy}" stroke="{CY}" stroke-opacity=".35"/>'
     for c in range(3):
         xx=180+c*320; b+=f'<line class="fl" x1="{xx}" y1="125" x2="{xx}" y2="335" stroke="{CY}" stroke-opacity=".35"/>'
-    for i,(cat,items) in enumerate(T):
+    for i,(cat,icon,items) in enumerate(T):
         px=30+(i%3)*320; py=30+(i//3)*210; d=0.12*i
         b+=f'<g class="f" style="animation-delay:{d}s"><rect x="{px}" y="{py}" width="300" height="190" rx="16" fill="{PANEL}" fill-opacity=".92" stroke="{ACC}" stroke-opacity=".45"/>'
-        b+=f'<circle class="pu" cx="{px+26}" cy="{py+30}" r="5" fill="{CY}" style="animation-delay:{d}s"/>'+t(px+42,py+35,cat,13,CY,weight="800",ls=3)
+        b+=toolkit_icon(px+26,py+30,icon)+t(px+48,py+35,cat,13,CY,weight="800",ls=3)
         b+=f'<line x1="{px+20}" y1="{py+52}" x2="{px+280}" y2="{py+52}" stroke="{LINE}"/></g>'
         x,y=px+20,py+68
         for j,it in enumerate(items):
