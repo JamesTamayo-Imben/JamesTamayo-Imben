@@ -40,19 +40,13 @@
 
 <img src="assets/readme-snake.svg" width="100%" alt="Animated view of my GitHub contribution graph.">
 
-<p align="center"><img src="assets/readme-streak.svg" width="100%" alt="GitHub contribution streak."></p>
-
-<p align="center"><img src="assets/github-summary.svg" width="100%" alt="GitHub at a glance: four stars across featured projects."></p>
+<p align="center"><img src="assets/readme-streak.svg" width="495" alt="GitHub contribution streak."> <img src="assets/github-summary.svg" width="495" alt="GitHub at a glance: four stars across featured projects."></p>
 
 <img src="assets/title-certifications.svg" width="100%" alt="Certifications — Credentials, verified.">
 
-<p align="center"><a href="https://drive.google.com/file/d/1rm0vM_M6UXmaVhQ5w7uSMMP9n35cL7JJ/view?usp=drive_link"><img src="assets/cert-1.svg" width="100%" alt="Certificate details — view certificate 1 of 4."></a></p>
+<p align="center"><a href="https://drive.google.com/file/d/1rm0vM_M6UXmaVhQ5w7uSMMP9n35cL7JJ/view?usp=drive_link"><img src="assets/cert-1.svg" width="490" alt="Certificate details — view certificate 1 of 4."></a> <a href="https://drive.google.com/file/d/14iAMh-NrXXQ3_TS15LdLmEnbz_9R8KCS/view?usp=sharing"><img src="assets/cert-2.svg" width="490" alt="IEEE-CS-PH 2025 Talk Series: Talk 3 — view certificate."></a></p>
 
-<p align="center"><a href="https://drive.google.com/file/d/14iAMh-NrXXQ3_TS15LdLmEnbz_9R8KCS/view?usp=sharing"><img src="assets/cert-2.svg" width="100%" alt="IEEE-CS-PH 2025 Talk Series: Talk 3 — view certificate."></a></p>
-
-<p align="center"><a href="https://drive.google.com/file/d/14lQeYoOjECjDDWqUz4OuEDYWL66cR0go/view?usp=sharing"><img src="assets/cert-3.svg" width="100%" alt="Oceans: Hour of Code — view certificate."></a></p>
-
-<p align="center"><a href="https://drive.google.com/file/d/1abepLXUSFUCco-Y-RyXOihvMdXzwyzvr/view?usp=sharing"><img src="assets/cert-4.svg" width="100%" alt="Certificate details — view certificate 4 of 4."></a></p>
+<p align="center"><a href="https://drive.google.com/file/d/14lQeYoOjECjDDWqUz4OuEDYWL66cR0go/view?usp=sharing"><img src="assets/cert-3.svg" width="490" alt="Oceans: Hour of Code — view certificate."></a> <a href="https://drive.google.com/file/d/1abepLXUSFUCco-Y-RyXOihvMdXzwyzvr/view?usp=sharing"><img src="assets/cert-4.svg" width="490" alt="Certificate details — view certificate 4 of 4."></a></p>
 
 <img src="assets/title-connect.svg" width="100%" alt="Connect — Let's build something worth explaining.">
 
