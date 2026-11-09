@@ -34,13 +34,15 @@ STYLE="""<style>
 </style>"""
 STYLE_CSS=STYLE.removeprefix("<style>").removesuffix("</style>")
 
-def wrap(name,w,h,body,orbs=True,big=False):
+def wrap(name,w,h,body,orbs=True,big=False,background=True):
     o=''
     if orbs:
         o=(f'<circle cx="{w*0.15}" cy="{h*0.2}" r="{h*0.55 if big else h*0.7}" fill="#2563EB" opacity="{.38 if big else .16}" filter="url(#blur)">'
            f'<animate attributeName="cx" values="{w*0.15};{w*0.28};{w*0.15}" dur="12s" repeatCount="indefinite"/></circle>'
            f'<circle cx="{w*0.88}" cy="{h*0.9}" r="{h*0.5 if big else h*0.6}" fill="{CY}" opacity="{.22 if big else .08}" filter="url(#blur)">'
            f'<animate attributeName="cy" values="{h*0.9};{h*0.7};{h*0.9}" dur="10s" repeatCount="indefinite"/></circle>')
+    surface=f'<rect width="{w}" height="{h}" fill="url(#bg)"/>{o}<rect width="{w}" height="{h}" fill="url(#grid)"/>' if background else ""
+    frame=f'<rect x=".5" y=".5" width="{w-1}" height="{h-1}" rx="18" fill="none" stroke="{LINE}"/>' if background else ""
     s=f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w} {h}" width="{w}" height="{h}" role="img">
 {STYLE}
 <defs>
@@ -54,10 +56,10 @@ def wrap(name,w,h,body,orbs=True,big=False):
 <clipPath id="rc"><rect width="{w}" height="{h}" rx="18"/></clipPath>
 </defs>
 <g clip-path="url(#rc)">
-<rect width="{w}" height="{h}" fill="url(#bg)"/>{o}<rect width="{w}" height="{h}" fill="url(#grid)"/>
+{surface}
 {body}
 </g>
-<rect x=".5" y=".5" width="{w-1}" height="{h-1}" rx="18" fill="none" stroke="{LINE}"/>
+{frame}
 </svg>'''
     with open(f"assets/{name}.svg","w",encoding="utf-8") as asset:
         asset.write(s)
@@ -135,10 +137,9 @@ def about_copy():
                "My projects include a school transparency platform, a local-first focus app, and a birthday-sharing app.")
     lines=textwrap.wrap(paragraph,width=100)
     w,h=1000,len(lines)*24+32
-    b=f'<rect x="24" y="4" width="952" height="{h-8}" rx="14" fill="{PANEL}" stroke="{LINE}"/>'
-    b+=f'<rect x="24" y="4" width="4" height="{h-8}" rx="2" fill="{ACC}"/>'
+    b=f'<rect x="0" y="0" width="7" height="{h}" fill="url(#a)"/>'
     for i,line in enumerate(lines):
-        b+=t(48,28+i*24,line,15,TXT)
+        b+=t(34,28+i*24,line,15,TXT)
     wrap("about-copy",w,h,b,orbs=False)
 
 
@@ -181,14 +182,13 @@ def portrait():
         y=190+i*44
         b+=ft(X+26,y,k,1.2+i*.12,size=11,fill=MUT,weight="700",ls=3)+ft(X+26,y+21,v,1.3+i*.12,size=14,fill=TXT)
     # design card
-    b+=f'<g class="f" style="animation-delay:1.8s"><rect x="{X}" y="470" width="{Wd}" height="120" rx="16" fill="#06102A" stroke="{LINE}"/>'
-    b+=f'<rect x="{X}" y="470" width="6" height="120" fill="url(#a)"/></g>'
+    b+=f'<g class="f" style="animation-delay:1.8s"><rect x="{X}" y="470" width="{Wd}" height="144" rx="16" fill="#06102A" stroke="{LINE}"/></g>'
     b+=ft(X+28,508,"DESIGN  ×  CODE",2.0,size=12,fill=CY,weight="800",ls=4)
     b+=ft(X+28,544,"Sketch it in Figma.",2.1,size=22,fill=TXT,font=SERIF,weight="700",style="italic")
     b+=ft(X+28,574,"Ship it in code.",2.2,size=22,fill=LIGHT,font=SERIF,weight="700",style="italic")
     # stat tiles
     for i,(v,l) in enumerate([("5","projects"),("4","certs"),("2026","grad year")]):
-        x=X+i*140; y=610
+        x=X+i*140; y=634
         b+=f'<g class="f" style="animation-delay:{2.3+i*.15}s"><rect x="{x}" y="{y}" width="130" height="78" rx="12" fill="{PANEL}" stroke="{ACC}" stroke-opacity=".5"/>'+t(x+16,y+38,v,26,LIGHT,weight="800")+t(x+16,y+60,l,12,MUT)+'</g>'
         b+=sheen(x,y,130,78,12,3+i*.4)
     wrap("ascii-portrait",w,H,b)
@@ -315,6 +315,35 @@ def certs():
         b+=sheen(x,y,450,54,12,d+1.2)
     wrap("certifications",w,h,b)
 
+
+def certificate_cards():
+    cards=[
+        ("Certificate details","See linked document"),
+        ("IEEE-CS-PH 2025 Talk Series: Talk 3","Certificate of Participation · IEEE CS Philippines"),
+        ("Oceans: Hour of Code","Code.org · course: oceans"),
+        ("Certificate details","Ref: AAR-TOD-2025-ZAM-387-015"),
+    ]
+    w,h=490,156
+    for i,(title,detail) in enumerate(cards,1):
+        delay=(i-1)*0.5
+        b=stars(w,h,6,i+10)
+        b+=t(464,126,f"{i:02}",96,"none",weight="800",anchor="end",
+             extra=f'stroke="{ACC}" stroke-width="1.2" stroke-opacity=".35"')
+        b+=f'<rect x="10" y="10" width="470" height="136" rx="16" fill="{PANEL}" fill-opacity=".92" stroke="url(#a)" stroke-opacity=".7"/>'
+        b+='<polygon points="50,80 60,110 66,102 72,110 82,80" fill="#1D4ED8" opacity=".9"/>'
+        b+=f'<circle cx="66" cy="58" r="36" fill="none" stroke="{CY}" stroke-opacity=".7" stroke-dasharray="3 7"><animateTransform attributeName="transform" type="rotate" from="0 66 58" to="360 66 58" dur="18s" repeatCount="indefinite"/></circle>'
+        b+=f'<circle cx="66" cy="58" r="27" fill="{BG}" stroke="url(#a)" stroke-width="2.4" filter="url(#glow)"/>'
+        b+=f'<path d="M55 58 l8 8 l15 -17" fill="none" stroke="{CY}" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>'
+        b+=t(124,38,f"CERTIFICATE  {i:02} / 04",10,CY,weight="800",ls=3)
+        b+=t(124,64,title,16,TXT,weight="800")
+        b+=t(124,84,detail,12,MUT,font=SERIF,style="italic")
+        b+=f'<rect x="124" y="104" width="176" height="28" rx="14" fill="url(#a)" filter="url(#glow)" class="pu"/>'
+        b+=t(138,122,"VIEW CERTIFICATE",10,BG,weight="800",ls=1.5)
+        b+=f'<path d="M278 108h6l4 4v12h-10z M284 108v4h4 M280 116h6 M281 120l2 2 4-4" fill="none" stroke="{BG}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>'
+        b+=sheen(10,10,470,136,16,delay)
+        wrap(f"cert-{i}",w,h,b,orbs=False)
+
+
 # ---------- FOOTER ----------
 def footer():
     w,h=1000,230; b=stars(w,h,22,2)
@@ -423,14 +452,6 @@ def full_readme():
                     node.set(key,id_map[value])
                 else:
                     node.set(key,rewrite(value))
-            if name.startswith("cert-"):
-                if node.tag==q("rect") and node.attrib.get("x")=="124" and node.attrib.get("y")=="96":
-                    node.set("y","90")
-                elif node.tag==q("text") and node.text=="VIEW CERTIFICATE":
-                    node.set("x","138")
-                    node.set("y","107")
-                elif node.tag==q("path") and node.attrib.get("d","").startswith("M278 108"):
-                    node.set("d","M276 95h7l4 4v12h-11z M283 95v4h4 M279 104h5 M279 108h5")
             if node.tag==q("style") and node.text:
                 style_texts.add(rewrite(node.text))
 
@@ -540,8 +561,8 @@ def full_readme():
     cert_y=y
     for i,href in enumerate(certificate_links):
         col=i%2; row=i//2
-        embed(f"cert-{i+1}",col*510,cert_y+row*152,490,href)
-    y=cert_y+((len(certificate_links)+1)//2)*152
+        embed(f"cert-{i+1}",col*510,cert_y+row*176,490,href)
+    y=cert_y+((len(certificate_links)+1)//2)*176
 
     section("connect")
     contact_links=[
@@ -565,5 +586,5 @@ def full_readme():
     ET.ElementTree(root).write("assets/full-readme.svg",encoding="utf-8",xml_declaration=True)
 
 if __name__ == "__main__":
-    hero(); about_copy(); portrait(); titles(); achievements(); projects(); toolkit(); certs(); footer()
+    hero(); about_copy(); portrait(); titles(); achievements(); projects(); toolkit(); certs(); certificate_cards(); footer()
     readme_link_assets(); full_readme()
