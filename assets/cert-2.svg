@@ -31,7 +31,8 @@
 <text x="124" y="64" font-family="'JetBrains Mono','Fira Code',Consolas,'Courier New',monospace" font-size="16" fill="#E6EEFF" font-weight="800" font-style="normal" text-anchor="start" letter-spacing="0" >IEEE-CS-PH 2025 Talk Series: Talk 3</text>
 <text x="124" y="84" font-family="Georgia,'Palatino Linotype','Times New Roman',serif" font-size="12" fill="#8FA3C7" font-weight="400" font-style="italic" text-anchor="start" letter-spacing="0" >Certificate of Participation · IEEE CS Philippines</text>
 <rect x="124" y="104" width="176" height="28" rx="14" fill="url(#a)" filter="url(#glow)" class="pu"/><text x="138" y="122" font-family="'JetBrains Mono','Fira Code',Consolas,'Courier New',monospace" font-size="10" fill="#040A1C" font-weight="800" font-style="normal" text-anchor="start" letter-spacing="1.5" >VIEW CERTIFICATE</text>
-<path d="M278 108h6l4 4v12h-10z M284 108v4h4 M280 116h6 M281 120l2 2 4-4" fill="none" stroke="#040A1C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><clipPath id="u5"><rect x="10" y="10" width="470" height="136" rx="16"/></clipPath><g clip-path="url(#u5)"><rect x="-110" y="10" width="90" height="136" fill="url(#sheen)"><animate attributeName="x" values="-110;540;540" keyTimes="0;.45;1" dur="5.5s" begin="0.5s" repeatCount="indefinite"/></rect></g>
+<text x="284" y="123" font-family="'JetBrains Mono','Fira Code',Consolas,'Courier New',monospace" font-size="16" fill="#040A1C" font-weight="700" font-style="normal" text-anchor="middle" letter-spacing="0" >↗</text>
+<clipPath id="u2"><rect x="10" y="10" width="470" height="136" rx="16"/></clipPath><g clip-path="url(#u2)"><rect x="-110" y="10" width="90" height="136" fill="url(#sheen)"><animate attributeName="x" values="-110;540;540" keyTimes="0;.45;1" dur="5.5s" begin="0.5s" repeatCount="indefinite"/></rect></g>
 </g>
 <rect x=".5" y=".5" width="489" height="155" rx="18" fill="none" stroke="#16295A"/>
 </svg>

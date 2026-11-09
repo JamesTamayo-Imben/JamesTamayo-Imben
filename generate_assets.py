@@ -34,7 +34,7 @@ STYLE="""<style>
 </style>"""
 STYLE_CSS=STYLE.removeprefix("<style>").removesuffix("</style>")
 
-def wrap(name,w,h,body,orbs=True,big=False,background=True):
+def wrap(name,w,h,body,orbs=True,big=False,background=True,corner_radius=18):
     o=''
     if orbs:
         o=(f'<circle cx="{w*0.15}" cy="{h*0.2}" r="{h*0.55 if big else h*0.7}" fill="#2563EB" opacity="{.38 if big else .16}" filter="url(#blur)">'
@@ -42,7 +42,7 @@ def wrap(name,w,h,body,orbs=True,big=False,background=True):
            f'<circle cx="{w*0.88}" cy="{h*0.9}" r="{h*0.5 if big else h*0.6}" fill="{CY}" opacity="{.22 if big else .08}" filter="url(#blur)">'
            f'<animate attributeName="cy" values="{h*0.9};{h*0.7};{h*0.9}" dur="10s" repeatCount="indefinite"/></circle>')
     surface=f'<rect width="{w}" height="{h}" fill="url(#bg)"/>{o}<rect width="{w}" height="{h}" fill="url(#grid)"/>' if background else ""
-    frame=f'<rect x=".5" y=".5" width="{w-1}" height="{h-1}" rx="18" fill="none" stroke="{LINE}"/>' if background else ""
+    frame=f'<rect x=".5" y=".5" width="{w-1}" height="{h-1}" rx="{corner_radius}" fill="none" stroke="{LINE}"/>' if background else ""
     s=f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w} {h}" width="{w}" height="{h}" role="img">
 {STYLE}
 <defs>
@@ -53,7 +53,7 @@ def wrap(name,w,h,body,orbs=True,big=False,background=True):
 <filter id="glow" x="-20%" y="-30%" width="140%" height="160%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
 <filter id="blur" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="55"/></filter>
 <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0V32" fill="none" stroke="#1B3170" stroke-opacity=".38"/></pattern>
-<clipPath id="rc"><rect width="{w}" height="{h}" rx="18"/></clipPath>
+<clipPath id="rc"><rect width="{w}" height="{h}" rx="{corner_radius}"/></clipPath>
 </defs>
 <g clip-path="url(#rc)">
 {surface}
@@ -339,7 +339,7 @@ def certificate_cards():
         b+=t(124,84,detail,12,MUT,font=SERIF,style="italic")
         b+=f'<rect x="124" y="104" width="176" height="28" rx="14" fill="url(#a)" filter="url(#glow)" class="pu"/>'
         b+=t(138,122,"VIEW CERTIFICATE",10,BG,weight="800",ls=1.5)
-        b+=f'<path d="M278 108h6l4 4v12h-10z M284 108v4h4 M280 116h6 M281 120l2 2 4-4" fill="none" stroke="{BG}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>'
+        b+=t(284,123,"↗",17,BG,weight="700",anchor="middle")
         b+=sheen(10,10,470,136,16,delay)
         wrap(f"cert-{i}",w,h,b,orbs=False)
 
@@ -369,7 +369,7 @@ def readme_link_assets():
         b+=t(14,25,label,12,TXT,weight="600")
         x=w-25
         b+=f'<path d="M{x} 12h10v10 M{x+10} 12l-10 10" fill="none" stroke="{CY}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>'
-        wrap(name,w,h,b,orbs=False)
+        wrap(name,w,h,b,orbs=False,corner_radius=10)
 
     account_icons={
         "github":'<path d="M7 7 6 3l4 2a8 8 0 0 1 4 0l4-2-1 4a8 8 0 0 1 2 5c0 4-2.5 6-7 6s-7-2-7-6a8 8 0 0 1 2-5z"/><path d="M9 18v2m6-2v2"/>',
@@ -389,7 +389,7 @@ def readme_link_assets():
         b+=(f'<g transform="translate(10 8)" fill="none" stroke="{CY}" stroke-width="1.5" '
             f'stroke-linecap="round" stroke-linejoin="round">{account_icons[kind]}</g>')
         b+=t(44,25,label,12,TXT)
-        wrap(name,w,h,b,orbs=False)
+        wrap(name,w,h,b,orbs=False,corner_radius=10)
 
     w,h=495,195
     b=f'<rect x="1" y="1" width="{w-2}" height="{h-2}" rx="14" fill="{PANEL}" stroke="{LINE}"/>'

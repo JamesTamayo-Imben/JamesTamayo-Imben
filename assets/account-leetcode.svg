@@ -22,12 +22,12 @@
 <filter id="glow" x="-20%" y="-30%" width="140%" height="160%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
 <filter id="blur" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="55"/></filter>
 <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0V32" fill="none" stroke="#1B3170" stroke-opacity=".38"/></pattern>
-<clipPath id="rc"><rect width="360" height="40" rx="18"/></clipPath>
+<clipPath id="rc"><rect width="360" height="40" rx="10"/></clipPath>
 </defs>
 <g clip-path="url(#rc)">
 <rect width="360" height="40" fill="url(#bg)"/><rect width="360" height="40" fill="url(#grid)"/>
 <rect x="1" y="1" width="358" height="38" rx="10" fill="#0A1633" stroke="#3B82F6" stroke-opacity=".7"/><g transform="translate(10 8)" fill="none" stroke="#22D3EE" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m8 6-5 6 5 6m8-12 5 6-5 6m-2-14-4 16"/></g><text x="44" y="25" font-family="'JetBrains Mono','Fira Code',Consolas,'Courier New',monospace" font-size="12" fill="#E6EEFF" font-weight="400" font-style="normal" text-anchor="start" letter-spacing="0" >James__Tamayo0604</text>
 
 </g>
-<rect x=".5" y=".5" width="359" height="39" rx="18" fill="none" stroke="#16295A"/>
+<rect x=".5" y=".5" width="359" height="39" rx="10" fill="none" stroke="#16295A"/>
 </svg>

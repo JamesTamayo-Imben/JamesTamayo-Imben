@@ -18,7 +18,7 @@
 
 <a href="https://github.com/JamesTamayo-Imben/pomonote"><img src="assets/project-2.svg" width="100%" alt="Pomonote: keyboard-first, local-first focus timer, tasks and notes. No account or dependencies. MIT licensed."></a>
 
-<p align="center"><a href="https://jamestamayo-imben.github.io/pomonote/"><img src="assets/button-live-site.svg" alt="Live Pomonote"></a>&nbsp;&nbsp;<a href="https://github.com/JamesTamayo-Imben/pomonote"><img src="assets/button-repository.svg" alt="Pomonote repository"></a></p>
+<p align="center"><a href="https://jamestamayo-imben.github.io/pomonote/"><img src="assets/button-live-site.svg" alt="Live Pomonote"></a> <a href="https://github.com/JamesTamayo-Imben/pomonote"><img src="assets/button-repository.svg" alt="Pomonote repository"></a></p>
 
 <a href="https://github.com/JamesTamayo-Imben/Batify"><img src="assets/project-3.svg" width="100%" alt="Batify lets someone share birthday letters, wishes, and gifts through one link, without sign-up."></a>
 
@@ -40,18 +40,24 @@
 
 <img src="assets/readme-snake.svg" width="100%" alt="Animated view of my GitHub contribution graph.">
 
-<p align="center"><img src="assets/readme-streak.svg" width="49%" alt="GitHub contribution streak.">&nbsp;&nbsp;<img src="assets/github-summary.svg" width="49%" alt="GitHub at a glance: four stars across featured projects."></p>
+<p align="center"><img src="assets/readme-streak.svg" width="100%" alt="GitHub contribution streak."></p>
+
+<p align="center"><img src="assets/github-summary.svg" width="100%" alt="GitHub at a glance: four stars across featured projects."></p>
 
 <img src="assets/title-certifications.svg" width="100%" alt="Certifications — Credentials, verified.">
 
-<p align="center"><a href="https://drive.google.com/file/d/1rm0vM_M6UXmaVhQ5w7uSMMP9n35cL7JJ/view?usp=drive_link"><img src="assets/cert-1.svg" width="49%" alt="Certificate details — view certificate 1 of 4."></a>&nbsp;&nbsp;<a href="https://drive.google.com/file/d/14iAMh-NrXXQ3_TS15LdLmEnbz_9R8KCS/view?usp=sharing"><img src="assets/cert-2.svg" width="49%" alt="IEEE-CS-PH 2025 Talk Series: Talk 3 — view certificate."></a></p>
+<p align="center"><a href="https://drive.google.com/file/d/1rm0vM_M6UXmaVhQ5w7uSMMP9n35cL7JJ/view?usp=drive_link"><img src="assets/cert-1.svg" width="100%" alt="Certificate details — view certificate 1 of 4."></a></p>
 
-<p align="center"><a href="https://drive.google.com/file/d/14lQeYoOjECjDDWqUz4OuEDYWL66cR0go/view?usp=sharing"><img src="assets/cert-3.svg" width="49%" alt="Oceans: Hour of Code — view certificate."></a>&nbsp;&nbsp;<a href="https://drive.google.com/file/d/1abepLXUSFUCco-Y-RyXOihvMdXzwyzvr/view?usp=sharing"><img src="assets/cert-4.svg" width="49%" alt="Certificate details — view certificate 4 of 4."></a></p>
+<p align="center"><a href="https://drive.google.com/file/d/14iAMh-NrXXQ3_TS15LdLmEnbz_9R8KCS/view?usp=sharing"><img src="assets/cert-2.svg" width="100%" alt="IEEE-CS-PH 2025 Talk Series: Talk 3 — view certificate."></a></p>
+
+<p align="center"><a href="https://drive.google.com/file/d/14lQeYoOjECjDDWqUz4OuEDYWL66cR0go/view?usp=sharing"><img src="assets/cert-3.svg" width="100%" alt="Oceans: Hour of Code — view certificate."></a></p>
+
+<p align="center"><a href="https://drive.google.com/file/d/1abepLXUSFUCco-Y-RyXOihvMdXzwyzvr/view?usp=sharing"><img src="assets/cert-4.svg" width="100%" alt="Certificate details — view certificate 4 of 4."></a></p>
 
 <img src="assets/title-connect.svg" width="100%" alt="Connect — Let's build something worth explaining.">
 
-<p align="center"><a href="https://github.com/JamesTamayo-Imben"><img src="assets/account-github.svg" alt="GitHub: JamesTamayo-Imben"></a>&nbsp;&nbsp;<a href="https://www.facebook.com/jam.es.968621"><img src="assets/account-facebook.svg" alt="Facebook: James_Tamayo"></a></p>
+<p align="center"><a href="https://github.com/JamesTamayo-Imben"><img src="assets/account-github.svg" alt="GitHub: JamesTamayo-Imben"></a> <a href="https://www.facebook.com/jam.es.968621"><img src="assets/account-facebook.svg" alt="Facebook: James_Tamayo"></a></p>
 
-<p align="center"><a href="https://leetcode.com/u/James_Tamayo0604/"><img src="assets/account-leetcode.svg" alt="LeetCode: James__Tamayo0604"></a>&nbsp;&nbsp;<a href="mailto:jamesttamayo0604@gmail.com"><img src="assets/account-email.svg" alt="Email: jamesttamayo0604@gmail.com"></a></p>
+<p align="center"><a href="https://leetcode.com/u/James_Tamayo0604/"><img src="assets/account-leetcode.svg" alt="LeetCode: James__Tamayo0604"></a> <a href="mailto:jamesttamayo0604@gmail.com"><img src="assets/account-email.svg" alt="Email: jamesttamayo0604@gmail.com"></a></p>
 
 <a href="https://github.com/JamesTamayo-Imben"><img src="assets/footer-signature.svg" width="100%" alt="James Tamayo — Building systems that can explain themselves."></a>
