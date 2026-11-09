@@ -1,3 +1,4 @@
+import os
 import random
 import re
 import textwrap
@@ -187,7 +188,7 @@ def portrait():
     b+=ft(X+28,544,"Sketch it in Figma.",2.1,size=22,fill=TXT,font=SERIF,weight="700",style="italic")
     b+=ft(X+28,574,"Ship it in code.",2.2,size=22,fill=LIGHT,font=SERIF,weight="700",style="italic")
     # stat tiles
-    for i,(v,l) in enumerate([("5","projects"),("4","certs"),("2026","grad year")]):
+    for i,(v,l) in enumerate([(github_project_count(),"projects"),("4","certs"),("2026","grad year")]):
         x=X+i*140; y=634
         b+=f'<g class="f" style="animation-delay:{2.3+i*.15}s"><rect x="{x}" y="{y}" width="130" height="78" rx="12" fill="{PANEL}" stroke="{ACC}" stroke-opacity=".5"/>'+t(x+16,y+38,v,26,LIGHT,weight="800")+t(x+16,y+60,l,12,MUT)+'</g>'
         b+=sheen(x,y,130,78,12,3+i*.4)
@@ -221,8 +222,14 @@ def achievement_icon(x,y,kind):
     return (f'<g transform="translate({x-12} {y-12})" fill="none" stroke="{CY}" stroke-width="1.7" '
             f'stroke-linecap="round" stroke-linejoin="round">{paths[kind]}</g>')
 
+def github_project_count():
+    count=os.environ.get("GITHUB_PROJECT_COUNT","5")
+    if not count.isdecimal():
+        raise ValueError("GITHUB_PROJECT_COUNT must be a non-negative integer")
+    return count
+
 def achievements():
-    A=[("5","Featured projects","projects",100),("6","User roles in STEP22","roles",100),
+    A=[(github_project_count(),"Featured projects","projects",100),("6","User roles in STEP22","roles",100),
        ("SHA-256","Tamper-evident ledger","ledger",100),("4","Online certifications","certificate",100),
        ("0","Accounts needed: Pomonote, Batify","local",100),("4","GitHub stars earned","stars",100)]
     b=stars(1000,340,16,5)

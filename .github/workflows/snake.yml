@@ -14,6 +14,30 @@ jobs:
   generate:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+
+      - name: Count public GitHub projects
+        env:
+          GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: echo "GITHUB_PROJECT_COUNT=$(python3 scripts/count_github_projects.py)" >> "$GITHUB_ENV"
+
+      - name: Refresh portfolio project counts
+        run: |
+          python3 -c 'import runpy; assets=runpy.run_path("generate_assets.py"); assets["portrait"](); assets["achievements"](); assets["full_readme"]()'
+
+      - name: Commit refreshed project counts
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/ascii-portrait.svg assets/achievements.svg assets/full-readme.svg
+          if git diff --cached --quiet; then
+            echo "Project counts are already up to date."
+          else
+            git commit -m "Update GitHub project counts"
+            git push
+          fi
+
       - uses: Platane/snk@v3
         with:
           github_user_name: ${{ github.repository_owner }}

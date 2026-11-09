@@ -8,7 +8,7 @@
 
 <img src="assets/title-recognition.svg" width="100%" alt="Recognition — Proof, on the record.">
 
-<img src="assets/achievements.svg" width="100%" alt="Portfolio highlights: five projects, six user roles in STEP22, a SHA-256 tamper-evident ledger, four certifications, two no-account apps, and four GitHub stars.">
+<img src="assets/achievements.svg" width="100%" alt="Portfolio highlights: public GitHub projects, six user roles in STEP22, a SHA-256 tamper-evident ledger, four certifications, two no-account apps, and four GitHub stars.">
 
 <img src="assets/title-work.svg" width="100%" alt="Selected work — Products, not assignments.">
 
