@@ -92,13 +92,13 @@ def sheen(x,y,w,h,r,delay=0):
 # ---------- HERO ----------
 def hero():
     w,h=1000,440; b=''
-    b+=typed(40,104,"> npm run build --intelligence",16,CY,0.3)
+    b+=typed(40,104,"> whoami",16,CY,0.3)
     b+=f'<text x="40" y="184" font-family="{MONO}" font-size="{TYPE_SCALE["hero"]}" font-weight="800" fill="url(#tx)" filter="url(#glow)" class="f" style="animation-delay:1.2s">JAMES TAMAYO</text>'
     b+=f'<rect x="42" y="204" width="0" height="4" rx="2" fill="url(#a)"><animate attributeName="width" from="0" to="280" begin="1.6s" dur="1s" fill="freeze"/></rect>'
-    b+=ft(40,254,"AI-Enabled Full-Stack Developer",1.8,size=25,fill=LIGHT,weight="600",ls=1)
-    b+=ft(40,292,"I design in Figma. I build with AI-assisted code. I ship.",2.1,size=19,fill=MUT,font=SERIF,style="italic")
+    b+=ft(40,254,"Full-stack developer",1.8,size=25,fill=LIGHT,weight="600",ls=1)
+    b+=ft(40,292,"I design in Figma and build web apps with React and Laravel.",2.1,size=19,fill=MUT,font=SERIF,style="italic")
     x=40
-    for i,c in enumerate(["AI-assisted","React","Laravel","Figma","Supabase","MySQL"]):
+    for i,c in enumerate(["React","Laravel","Inertia.js","TypeScript","Supabase","MySQL"]):
         p,pw=pill(x,322,c,13,2.4+i*0.15); b+=p; x+=pw+10
     b+=f'<circle class="pu" cx="48" cy="404" r="5" fill="{CY}"/>'+ft(62,409,f"BSIS student  ·  {LOCATION}",2.9,size=13,fill=MUT)
     b+=t(672,112,"STEP22  /  TRUST TRACE",11,CY,weight="800",ls=2)
@@ -156,9 +156,9 @@ def portrait():
     b+=f'<g class="f" style="animation-delay:.4s"><rect x="{X}" y="22" width="{Wd}" height="430" rx="16" fill="{PANEL}" fill-opacity=".92" stroke="{ACC}" stroke-opacity=".5"/></g>'
     b+=ft(X+26,62,"ID.CARD",.6,size=12,fill=CY,weight="800",ls=5)
     b+=ft(X+26,106,"James Tamayo",.8,size=36,fill=TXT,font=SERIF,weight="700",style="italic")
-    b+=ft(X+26,134,"AI-Enabled Full-Stack Developer",1.0,size=15,fill=LIGHT,weight="600")
+    b+=ft(X+26,134,"Full-stack developer",1.0,size=15,fill=LIGHT,weight="600")
     b+=f'<rect x="{X+26}" y="148" width="0" height="3" rx="1.5" fill="url(#a)"><animate attributeName="width" from="0" to="120" begin="1.2s" dur=".9s" fill="freeze"/></rect>'
-    F=[("EDUCATION","BS in Information System"),("SCHOOL","Kolehiyo ng Lungsod ng Dasmariñas"),("YEARS","2023 to 2026 (Student)"),
+    F=[("EDUCATION","BS in Information Systems"),("SCHOOL","Kolehiyo ng Lungsod ng Dasmariñas"),("YEARS","2023 to 2026 (Student)"),
        ("LOCATION",LOCATION),("BUILDS WITH","React · Laravel · Supabase · Node.js"),("DESIGNS IN","Figma  (UI / UX)")]
     for i,(k,v) in enumerate(F):
         y=190+i*44
@@ -223,8 +223,8 @@ def projects():
     P=[("01","STEP22: School Transparency Portal","Role-based governance and a tamper-evident financial ledger for KLD.",[("6","user roles"),("SHA-256","ledger chain"),("2-layer","access control")],["Laravel 12","React 18","Inertia.js","MySQL","Supabase Auth"],["Role-scoped UI","Laravel + RBAC","SHA-256 ledger"]),
        ("02","Pomonote: Focus Timer + Tasks","Keyboard-first, local-first focus timer + tasks + notes. No account.",[("0","accounts needed"),("0","dependencies"),("MIT","licensed")],["JavaScript","Local-first","Keyboard-first"],["Timer","Tasks","Notes"]),
        ("03","Batify: Letters, Wishes & Gifts","Birthday letters, wishes and gifts in one link. No signup.",[("1","link to share"),("0","signups"),("3","Supabase services")],["React","Supabase","Postgres","Edge Functions"],["React SPA","Edge Functions","Postgres+Storage"]),
-       ("04","folio-os","[One-line description of folio-os]",[("TypeScript","built with"),("1","GitHub star"),("Public","repository")],["TypeScript","[Add stack]"],["[Step 1]","[Step 2]","[Step 3]"]),
-       ("05","Tagthr22","[One-line description of Tagthr22]",[("TypeScript","built with"),("1","GitHub star"),("Public","repository")],["TypeScript","[Add stack]"],["[Step 1]","[Step 2]","[Step 3]"])]
+       ("04","FolioOS: Desktop Portfolio","A desktop-style portfolio with case studies and recruiter details.",[("Next.js","App Router"),("TypeScript","built with"),("Supabase","backend")],["Next.js","React","TypeScript","Supabase","Zustand"],["Desktop portfolio","Case studies","Recruiter profile"]),
+       ("05","Tagthr22: 3D Design Element","A React and TypeScript code bundle based on a Figma design.",[("TypeScript","built with"),("Vite","build tool"),("Public","repository")],["React","TypeScript","Vite","MUI"],["Figma design","React code bundle","Vite preview"])]
     for n,(num,title,desc,m,chips,flow) in enumerate(P,1):
         w,h=1000,290; b=stars(w,h,10,n)
         b+=f'<rect x="0" y="0" width="7" height="{h}" fill="url(#a)"/>'
@@ -262,7 +262,7 @@ def toolkit_icon(x,y,kind):
 
 def toolkit():
     T=[("LANGUAGES","languages",["JavaScript","TypeScript","PHP","SQL","HTML / CSS"]),
-       ("AI-ENABLED","ai",["AI-assisted dev","Prompt Eng.","LLM APIs"]),
+       ("AI TOOLS","ai",["AI-assisted dev","Prompt engineering","LLM APIs"]),
        ("FRONTEND","frontend",["React","Inertia.js","Tailwind","Vite"]),
        ("BACKEND","backend",["Laravel","Node.js","Express","REST APIs"]),
        ("DATA / INFRA","data",["MySQL","PostgreSQL","SQLite","Supabase","GitHub Pages"]),
@@ -310,4 +310,5 @@ def footer():
     b+=f'<rect class="bl" x="{500+len("Building systems that can explain themselves.")*4.8+8:.0f}" y="114" width="9" height="16" fill="{CY}"/>'
     wrap("footer-signature",w,h,b)
 
-hero(); portrait(); titles(); achievements(); projects(); toolkit(); certs(); footer()
+if __name__ == "__main__":
+    hero(); portrait(); titles(); achievements(); projects(); toolkit(); certs(); footer()
