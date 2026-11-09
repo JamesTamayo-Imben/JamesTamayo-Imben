@@ -32,6 +32,7 @@ STYLE="""<style>
 @keyframes r{to{opacity:1}}
 @media (prefers-reduced-motion:reduce){.f,.r{opacity:1;animation:none}}
 </style>"""
+STYLE_CSS=STYLE.removeprefix("<style>").removesuffix("</style>")
 
 def wrap(name,w,h,body,orbs=True,big=False):
     o=''
@@ -127,6 +128,18 @@ def hero():
     b+=t(816,374,"RBAC  /  SHA-256 CHAIN",10,MUT,ls=1,anchor="middle")
     b+=f'<rect x="0" y="{h-4}" width="{w}" height="4" fill="url(#a)" opacity=".8"/>'
     wrap("james-hero-banner",w,h,b,big=True)
+
+def about_copy():
+    paragraph=("I'm a full-stack developer and BS Information Systems student based in Dasmariñas, Cavite. "
+               "I design interfaces in Figma and build web apps with React, Laravel, and Supabase. "
+               "My projects include a school transparency platform, a local-first focus app, and a birthday-sharing app.")
+    lines=textwrap.wrap(paragraph,width=100)
+    w,h=1000,len(lines)*24+32
+    b=f'<rect x="24" y="4" width="952" height="{h-8}" rx="14" fill="{PANEL}" stroke="{LINE}"/>'
+    b+=f'<rect x="24" y="4" width="4" height="{h-8}" rx="2" fill="{ACC}"/>'
+    for i,line in enumerate(lines):
+        b+=t(48,28+i*24,line,15,TXT)
+    wrap("about-copy",w,h,b,orbs=False)
 
 
 # ---------- ASCII PORTRAIT ----------
@@ -314,6 +327,50 @@ def footer():
     b+=f'<rect class="bl" x="{500+len("Building systems that can explain themselves.")*4.8+8:.0f}" y="114" width="9" height="16" fill="{CY}"/>'
     wrap("footer-signature",w,h,b)
 
+def readme_link_assets():
+    actions=[
+        ("button-case-study","Private case study"),
+        ("button-live-site","Live Pomonote"),
+        ("button-repository","View repository"),
+        ("button-certificate","View certificate"),
+    ]
+    for name,label in actions:
+        w=ceil(len(label)*7.2+48); h=40
+        b=f'<rect x="1" y="1" width="{w-2}" height="38" rx="10" fill="{PANEL}" stroke="{ACC}" stroke-opacity=".7"/>'
+        b+=t(14,25,label,12,TXT,weight="600")
+        x=w-25
+        b+=f'<path d="M{x} 12h10v10 M{x+10} 12l-10 10" fill="none" stroke="{CY}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>'
+        wrap(name,w,h,b,orbs=False)
+
+    account_icons={
+        "github":'<path d="M7 7 6 3l4 2a8 8 0 0 1 4 0l4-2-1 4a8 8 0 0 1 2 5c0 4-2.5 6-7 6s-7-2-7-6a8 8 0 0 1 2-5z"/><path d="M9 18v2m6-2v2"/>',
+        "facebook":'<path d="M13 20v-8h3l.5-3H13V7.5c0-1 .4-1.5 1.6-1.5H16V3.3c-.6-.1-1.5-.3-2.7-.3C10.7 3 9 4.7 9 7.7V9H6v3h3v8z"/>',
+        "leetcode":'<path d="m8 6-5 6 5 6m8-12 5 6-5 6m-2-14-4 16"/>',
+        "email":'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/>',
+    }
+    accounts=[
+        ("account-github","JamesTamayo-Imben","github"),
+        ("account-facebook","James_Tamayo","facebook"),
+        ("account-leetcode","James__Tamayo0604","leetcode"),
+        ("account-email","jamesttamayo0604@gmail.com","email"),
+    ]
+    for name,label,kind in accounts:
+        w,h=360,40
+        b=f'<rect x="1" y="1" width="{w-2}" height="{h-2}" rx="10" fill="{PANEL}" stroke="{ACC}" stroke-opacity=".7"/>'
+        b+=(f'<g transform="translate(10 8)" fill="none" stroke="{CY}" stroke-width="1.5" '
+            f'stroke-linecap="round" stroke-linejoin="round">{account_icons[kind]}</g>')
+        b+=t(44,25,label,12,TXT)
+        wrap(name,w,h,b,orbs=False)
+
+    w,h=495,195
+    b=f'<rect x="1" y="1" width="{w-2}" height="{h-2}" rx="14" fill="{PANEL}" stroke="{LINE}"/>'
+    b+=t(24,42,"GitHub at a glance",18,TXT,weight="600")
+    b+=f'<line x1="24" y1="62" x2="471" y2="62" stroke="{LINE}"/>'
+    b+=t(24,106,"4",30,LIGHT,weight="600")
+    b+=t(66,106,"GitHub stars earned",14,TXT)
+    b+=t(24,142,"Across my featured projects",13,MUT)
+    wrap("github-summary",w,h,b,orbs=False)
+
 
 def full_readme():
     ns="http://www.w3.org/2000/svg"
@@ -334,14 +391,14 @@ def full_readme():
         "Portfolio featuring selected projects, skills, certifications, GitHub activity, and contact links."
     )
     style=ET.SubElement(root,q("style"))
-    style.text=STYLE
+    style.text=STYLE_CSS
     defs=ET.SubElement(root,q("defs"))
     content=ET.SubElement(root,q("g"))
     ET.SubElement(content,q("rect"),{"width":"1000","height":"1","fill":BG})
 
     y=0
     asset_index=0
-    style_texts={STYLE}
+    style_texts={STYLE_CSS}
 
     def embed(name,x,y,width=1000,href=None):
         nonlocal asset_index
@@ -368,13 +425,12 @@ def full_readme():
                     node.set(key,rewrite(value))
             if name.startswith("cert-"):
                 if node.tag==q("rect") and node.attrib.get("x")=="124" and node.attrib.get("y")=="96":
-                    node.set("y","84")
-                    node.set("width","192")
+                    node.set("y","90")
                 elif node.tag==q("text") and node.text=="VIEW CERTIFICATE":
-                    node.set("x","140")
-                    node.set("y","101")
+                    node.set("x","138")
+                    node.set("y","107")
                 elif node.tag==q("path") and node.attrib.get("d","").startswith("M278 108"):
-                    node.set("d","M290 89h7l4 4v12h-11z M297 89v4h4 M293 98h5 M293 102h5")
+                    node.set("d","M276 95h7l4 4v12h-11z M283 95v4h4 M279 104h5 M279 108h5")
             if node.tag==q("style") and node.text:
                 style_texts.add(rewrite(node.text))
 
@@ -435,14 +491,8 @@ def full_readme():
     y+=embed("james-hero-banner",0,y)
 
     section("about")
-    paragraph=("I'm a full-stack developer and BS Information Systems student based in Dasmariñas, Cavite. "
-               "I design interfaces in Figma and build web apps with React, Laravel, and Supabase. "
-               "My projects include a school transparency platform, a local-first focus app, and a birthday-sharing app.")
-    lines=textwrap.wrap(paragraph,width=100)
-    paragraph_group=ET.SubElement(content,q("g"))
-    for i,line in enumerate(lines):
-        text_line(paragraph_group,36,y+20+i*24,line,15,TXT)
-    y+=len(lines)*24+8
+    y+=embed("about-copy",0,y)
+    y+=16
     y+=embed("ascii-portrait",0,y)
 
     section("recognition")
@@ -460,7 +510,7 @@ def full_readme():
         y+=embed(f"project-{i}",0,y,href=href)
         y+=12
         if i==1:
-            badge(34,y,None,"Private case study")
+            badge(34,y,None,"Private case study","https://github.com/JamesTamayo-Imben")
         elif i==2:
             live_width=badge(34,y,None,"Live Pomonote","https://jamestamayo-imben.github.io/pomonote/")
             badge(34+live_width+12,y,None,"Pomonote repository",project_links[i-1])
@@ -475,18 +525,10 @@ def full_readme():
     section("commits")
     y+=embed("readme-snake",0,y)
     y+=16
-    y+=embed("readme-streak",0,y,495)
-    stats_x=505
-    stats=ET.SubElement(content,q("g"),{"transform":f"translate({stats_x} {y-195})"})
-    ET.SubElement(stats,q("rect"),{
-        "width":"495","height":"195","rx":"16","fill":PANEL,"stroke":LINE,
-    })
-    text_line(stats,24,42,"GitHub at a glance",18,TXT,"600")
-    ET.SubElement(stats,q("line"),{"x1":"24","y1":"62","x2":"471","y2":"62","stroke":LINE})
-    text_line(stats,24,106,"4",30,LIGHT,"600")
-    text_line(stats,66,106,"GitHub stars earned",14,TXT)
-    text_line(stats,24,142,"Across my featured projects",13,MUT)
-    y+=195
+    activity_y=y
+    streak_height=embed("readme-streak",0,activity_y,495)
+    summary_height=embed("github-summary",505,activity_y,495)
+    y=activity_y+max(streak_height,summary_height)
 
     section("certifications")
     certificate_links=[
@@ -510,9 +552,9 @@ def full_readme():
     ]
     for i,(label,href,icon) in enumerate(contact_links):
         x=34+(i%2)*482
-        yy=y+(i//2)*44
+        yy=y+(i//2)*48
         badge(x,yy,450,label,href,icon)
-    y+=88
+    y+=96
     y+=embed("footer-signature",0,y,href="https://github.com/JamesTamayo-Imben")
     y+=24
 
@@ -523,4 +565,5 @@ def full_readme():
     ET.ElementTree(root).write("assets/full-readme.svg",encoding="utf-8",xml_declaration=True)
 
 if __name__ == "__main__":
-    hero(); portrait(); titles(); achievements(); projects(); toolkit(); certs(); footer(); full_readme()
+    hero(); about_copy(); portrait(); titles(); achievements(); projects(); toolkit(); certs(); footer()
+    readme_link_assets(); full_readme()

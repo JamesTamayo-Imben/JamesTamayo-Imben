@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 40" width="360" height="40" role="img">
+<style>
+.f{opacity:0;animation:f .9s ease forwards}
+@keyframes f{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.tw{animation:tw 3.2s ease-in-out infinite}
+@keyframes tw{0%,100%{opacity:.1}50%{opacity:.9}}
+.bl{animation:bl 1s steps(1) infinite}
+@keyframes bl{50%{opacity:0}}
+.fl{stroke-dasharray:5 7;animation:fl 1s linear infinite}
+@keyframes fl{to{stroke-dashoffset:-12}}
+.pu{animation:pu 2.8s ease-in-out infinite}
+@keyframes pu{0%,100%{opacity:.45}50%{opacity:1}}
+.r{opacity:0;animation:r .6s ease forwards}
+@keyframes r{to{opacity:1}}
+@media (prefers-reduced-motion:reduce){.f,.r{opacity:1;animation:none}}
+</style>
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#050E2B"/><stop offset="1" stop-color="#040A1C"/></linearGradient>
+<linearGradient id="a" x1="0" x2="1"><stop offset="0" stop-color="#3B82F6"/><stop offset="1" stop-color="#22D3EE"/></linearGradient>
+<linearGradient id="tx" x1="0" x2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".55" stop-color="#93C5FD"/><stop offset="1" stop-color="#22D3EE"/></linearGradient>
+<linearGradient id="sheen" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".13"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+<filter id="glow" x="-20%" y="-30%" width="140%" height="160%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+<filter id="blur" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="55"/></filter>
+<pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0V32" fill="none" stroke="#1B3170" stroke-opacity=".38"/></pattern>
+<clipPath id="rc"><rect width="360" height="40" rx="18"/></clipPath>
+</defs>
+<g clip-path="url(#rc)">
+<rect width="360" height="40" fill="url(#bg)"/><rect width="360" height="40" fill="url(#grid)"/>
+<rect x="1" y="1" width="358" height="38" rx="10" fill="#0A1633" stroke="#3B82F6" stroke-opacity=".7"/><g transform="translate(10 8)" fill="none" stroke="#22D3EE" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7 6 3l4 2a8 8 0 0 1 4 0l4-2-1 4a8 8 0 0 1 2 5c0 4-2.5 6-7 6s-7-2-7-6a8 8 0 0 1 2-5z"/><path d="M9 18v2m6-2v2"/></g><text x="44" y="25" font-family="'JetBrains Mono','Fira Code',Consolas,'Courier New',monospace" font-size="12" fill="#E6EEFF" font-weight="400" font-style="normal" text-anchor="start" letter-spacing="0" >JamesTamayo-Imben</text>
+
+</g>
+<rect x=".5" y=".5" width="359" height="39" rx="18" fill="none" stroke="#16295A"/>
+</svg>
