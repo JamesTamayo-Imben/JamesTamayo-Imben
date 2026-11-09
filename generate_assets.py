@@ -1,5 +1,9 @@
 import random
+import re
+import textwrap
+from math import ceil
 from html import escape as e
+from xml.etree import ElementTree as ET
 BG="#040A1C"; PANEL="#0A1633"; LINE="#16295A"; ACC="#3B82F6"; LIGHT="#93C5FD"; CY="#22D3EE"; TXT="#E6EEFF"; MUT="#8FA3C7"
 LOCATION="Dasmariñas, Cavite, PH"
 MONO="'JetBrains Mono','Fira Code',Consolas,'Courier New',monospace"
@@ -115,7 +119,7 @@ def hero():
     }
     for y,num,title,detail,kind in trace:
         b+=f'<circle cx="682" cy="{y}" r="16" fill="{PANEL}" stroke="{ACC}" stroke-opacity=".7"/>'
-        b+=f'<g transform="translate(672 {y-10})" fill="none" stroke="{CY}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">{trace_icons[kind]}</g>'
+        b+=f'<g transform="translate(670 {y-12})" fill="none" stroke="{CY}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">{trace_icons[kind]}</g>'
         b+=t(716,y-5,num,10,CY,weight="700")+t(746,y-5,title,15,TXT,weight="700")
         b+=t(746,y+18,detail,12,MUT,font=SERIF,style="italic")
         if y != 326:
@@ -280,9 +284,9 @@ def toolkit():
         b+=f'<line x1="{px+20}" y1="{py+52}" x2="{px+280}" y2="{py+52}" stroke="{LINE}"/></g>'
         x,y=px+20,py+68
         for j,it in enumerate(items):
-            pw=len(it)*8.2+24
-            if x+pw>px+285: x=px+20; y+=44
-            p,_=pill(x,y,it,13,0.4+d+j*0.08); b+=p; x+=pw+8
+            pw=len(it)*7.2+24
+            if x+pw>px+285: x=px+20; y+=40
+            p,pw=pill(x,y,it,13,0.4+d+j*0.08); b+=p; x+=pw+8
         b+=sheen(px,py,300,190,16,d+1.5)
     wrap("toolkit",w,h,b)
 
@@ -310,5 +314,213 @@ def footer():
     b+=f'<rect class="bl" x="{500+len("Building systems that can explain themselves.")*4.8+8:.0f}" y="114" width="9" height="16" fill="{CY}"/>'
     wrap("footer-signature",w,h,b)
 
+
+def full_readme():
+    ns="http://www.w3.org/2000/svg"
+    xlink="http://www.w3.org/1999/xlink"
+    ET.register_namespace("",ns)
+    ET.register_namespace("xlink",xlink)
+    q=lambda tag: f"{{{ns}}}{tag}"
+    root=ET.Element(q("svg"),{
+        "viewBox":"0 0 1000 0",
+        "width":"1000",
+        "height":"0",
+        "role":"img",
+        "aria-labelledby":"readme-title readme-description",
+    })
+    ET.SubElement(root,q("title"),{"id":"readme-title"}).text="James Tamayo — Developer portfolio"
+    ET.SubElement(root,q("desc"),{"id":"readme-description"}).text=(
+        "Full-stack developer and BS Information Systems student in Dasmariñas, Cavite. "
+        "Portfolio featuring selected projects, skills, certifications, GitHub activity, and contact links."
+    )
+    style=ET.SubElement(root,q("style"))
+    style.text=STYLE
+    defs=ET.SubElement(root,q("defs"))
+    content=ET.SubElement(root,q("g"))
+    ET.SubElement(content,q("rect"),{"width":"1000","height":"1","fill":BG})
+
+    y=0
+    asset_index=0
+    style_texts={STYLE}
+
+    def embed(name,x,y,width=1000,href=None):
+        nonlocal asset_index
+        path=f"assets/{name}.svg"
+        source=ET.parse(path).getroot()
+        vx,vy,vw,vh=map(float,source.attrib["viewBox"].split())
+        scale=width/vw
+        height=vh*scale
+        asset_index+=1
+        prefix=f"asset{asset_index}_"
+        id_map={node.attrib["id"]:prefix+node.attrib["id"] for node in source.iter() if "id" in node.attrib}
+
+        def rewrite(value):
+            value=re.sub(r"url\(#([^)]+)\)",lambda m:f"url(#{id_map.get(m.group(1),m.group(1))})",value)
+            if value.startswith("#") and value[1:] in id_map:
+                value="#"+id_map[value[1:]]
+            return value
+
+        for node in source.iter():
+            for key,value in list(node.attrib.items()):
+                if key=="id":
+                    node.set(key,id_map[value])
+                else:
+                    node.set(key,rewrite(value))
+            if name.startswith("cert-"):
+                if node.tag==q("rect") and node.attrib.get("x")=="124" and node.attrib.get("y")=="96":
+                    node.set("y","84")
+                    node.set("width","192")
+                elif node.tag==q("text") and node.text=="VIEW CERTIFICATE":
+                    node.set("x","140")
+                    node.set("y","101")
+                elif node.tag==q("path") and node.attrib.get("d","").startswith("M278 108"):
+                    node.set("d","M290 89h7l4 4v12h-11z M297 89v4h4 M293 98h5 M293 102h5")
+            if node.tag==q("style") and node.text:
+                style_texts.add(rewrite(node.text))
+
+        transform=f"translate({x-vx*scale:g} {y-vy*scale:g}) scale({scale:g})"
+        holder=ET.SubElement(content,q("a"),{"href":href}) if href else content
+        group=ET.SubElement(holder,q("g"),{"transform":transform})
+        for child in list(source):
+            if child.tag==q("style"):
+                continue
+            if child.tag==q("defs"):
+                defs.extend(list(child))
+            else:
+                group.append(child)
+        return ceil(height)
+
+    def section(name):
+        nonlocal y
+        y+=24
+        y+=embed(f"title-{name}",0,y)
+        y+=16
+
+    def text_line(parent,x,y,value,size=14,fill=TXT,weight="400",anchor="start"):
+        ET.SubElement(parent,q("text"),{
+            "x":str(x),"y":str(y),"font-family":MONO,"font-size":str(size),
+            "fill":fill,"font-weight":weight,"text-anchor":anchor,
+        }).text=value
+
+    def account_icon(parent,x,y,kind):
+        paths={
+            "github":'<path d="M7 7 6 3l4 2a8 8 0 0 1 4 0l4-2-1 4a8 8 0 0 1 2 5c0 4-2.5 6-7 6s-7-2-7-6a8 8 0 0 1 2-5z"/><path d="M9 18v2m6-2v2"/>',
+            "facebook":'<path d="M13 20v-8h3l.5-3H13V7.5c0-1 .4-1.5 1.6-1.5H16V3.3c-.6-.1-1.5-.3-2.7-.3C10.7 3 9 4.7 9 7.7V9H6v3h3v8z"/>',
+            "leetcode":'<path d="m8 6-5 6 5 6m8-12 5 6-5 6m-2-14-4 16"/>',
+            "email":'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/>',
+        }
+        icon=ET.SubElement(parent,q("g"),{
+            "transform":f"translate({x} {y})",
+            "fill":"none","stroke":CY,"stroke-width":"1.5",
+            "stroke-linecap":"round","stroke-linejoin":"round",
+        })
+        icon.append(ET.fromstring(f'<g xmlns="{ns}">{paths[kind]}</g>'))
+
+    def badge(x,y,width,label,href=None,icon=None):
+        if width is None:
+            width=ceil(len(label)*12*0.6+32)
+        holder=ET.SubElement(content,q("a"),{"href":href}) if href else content
+        group=ET.SubElement(holder,q("g"))
+        ET.SubElement(group,q("rect"),{
+            "x":str(x),"y":str(y),"width":str(width),"height":"32","rx":"8",
+            "fill":PANEL,"stroke":ACC,"stroke-opacity":".65",
+        })
+        if icon:
+            account_icon(group,x+14,y+8,icon)
+            text_line(group,x+42,y+21,label,12,TXT)
+        else:
+            text_line(group,x+width/2,y+21,label,12,TXT,anchor="middle")
+        return width
+
+    y+=embed("james-hero-banner",0,y)
+
+    section("about")
+    paragraph=("I'm a full-stack developer and BS Information Systems student based in Dasmariñas, Cavite. "
+               "I design interfaces in Figma and build web apps with React, Laravel, and Supabase. "
+               "My projects include a school transparency platform, a local-first focus app, and a birthday-sharing app.")
+    lines=textwrap.wrap(paragraph,width=100)
+    paragraph_group=ET.SubElement(content,q("g"))
+    for i,line in enumerate(lines):
+        text_line(paragraph_group,36,y+20+i*24,line,15,TXT)
+    y+=len(lines)*24+8
+    y+=embed("ascii-portrait",0,y)
+
+    section("recognition")
+    y+=embed("achievements",0,y)
+
+    section("work")
+    project_links=[
+        None,
+        "https://github.com/JamesTamayo-Imben/pomonote",
+        "https://github.com/JamesTamayo-Imben/Batify",
+        "https://github.com/JamesTamayo-Imben/folio-os",
+        "https://github.com/JamesTamayo-Imben/Tagthr22",
+    ]
+    for i,href in enumerate(project_links,1):
+        y+=embed(f"project-{i}",0,y,href=href)
+        y+=12
+        if i==1:
+            badge(34,y,None,"Private case study")
+        elif i==2:
+            live_width=badge(34,y,None,"Live Pomonote","https://jamestamayo-imben.github.io/pomonote/")
+            badge(34+live_width+12,y,None,"Pomonote repository",project_links[i-1])
+        else:
+            project_names={3:"Batify",4:"FolioOS",5:"Tagthr22"}
+            badge(34,y,None,f"{project_names[i]} repository",href)
+        y+=44
+
+    section("toolkit")
+    y+=embed("toolkit",0,y)
+
+    section("commits")
+    y+=embed("readme-snake",0,y)
+    y+=16
+    y+=embed("readme-streak",0,y,495)
+    stats_x=505
+    stats=ET.SubElement(content,q("g"),{"transform":f"translate({stats_x} {y-195})"})
+    ET.SubElement(stats,q("rect"),{
+        "width":"495","height":"195","rx":"16","fill":PANEL,"stroke":LINE,
+    })
+    text_line(stats,24,42,"GitHub at a glance",18,TXT,"600")
+    ET.SubElement(stats,q("line"),{"x1":"24","y1":"62","x2":"471","y2":"62","stroke":LINE})
+    text_line(stats,24,106,"4",30,LIGHT,"600")
+    text_line(stats,66,106,"GitHub stars earned",14,TXT)
+    text_line(stats,24,142,"Across my featured projects",13,MUT)
+    y+=195
+
+    section("certifications")
+    certificate_links=[
+        "https://drive.google.com/file/d/1rm0vM_M6UXmaVhQ5w7uSMMP9n35cL7JJ/view?usp=drive_link",
+        "https://drive.google.com/file/d/14iAMh-NrXXQ3_TS15LdLmEnbz_9R8KCS/view?usp=sharing",
+        "https://drive.google.com/file/d/14lQeYoOjECjDDWqUz4OuEDYWL66cR0go/view?usp=sharing",
+        "https://drive.google.com/file/d/1abepLXUSFUCco-Y-RyXOihvMdXzwyzvr/view?usp=sharing",
+    ]
+    cert_y=y
+    for i,href in enumerate(certificate_links):
+        col=i%2; row=i//2
+        embed(f"cert-{i+1}",col*510,cert_y+row*152,490,href)
+    y=cert_y+((len(certificate_links)+1)//2)*152
+
+    section("connect")
+    contact_links=[
+        ("JamesTamayo-Imben","https://github.com/JamesTamayo-Imben","github"),
+        ("James_Tamayo","https://www.facebook.com/jam.es.968621","facebook"),
+        ("James__Tamayo0604","https://leetcode.com/u/James_Tamayo0604/","leetcode"),
+        ("jamesttamayo0604@gmail.com","mailto:jamesttamayo0604@gmail.com","email"),
+    ]
+    for i,(label,href,icon) in enumerate(contact_links):
+        x=34+(i%2)*482
+        yy=y+(i//2)*44
+        badge(x,yy,450,label,href,icon)
+    y+=88
+    y+=embed("footer-signature",0,y,href="https://github.com/JamesTamayo-Imben")
+    y+=24
+
+    style.text="\n".join(sorted(style_texts))
+    root.set("viewBox",f"0 0 1000 {y}")
+    root.set("height",str(y))
+    content[0].set("height",str(y))
+    ET.ElementTree(root).write("assets/full-readme.svg",encoding="utf-8",xml_declaration=True)
+
 if __name__ == "__main__":
-    hero(); portrait(); titles(); achievements(); projects(); toolkit(); certs(); footer()
+    hero(); portrait(); titles(); achievements(); projects(); toolkit(); certs(); footer(); full_readme()
