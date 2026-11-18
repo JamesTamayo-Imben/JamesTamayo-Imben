@@ -32,15 +32,30 @@
 
 <p align="center"><a href="https://github.com/JamesTamayo-Imben/Tagthr22"><img src="assets/button-repository.svg" alt="Tagthr22 repository"></a></p>
 
+<!-- repositories:start -->
+
+### All public repositories (refreshed daily)
+
+| Repository | Description | Language | Stars | Last updated |
+| --- | --- | --- | ---: | --- |
+| [Batify](https://github.com/JamesTamayo-Imben/Batify) | Bati na, may pa-gift pa. · Birthday letters, wishes & gifts — one link, no signup.  A static React SPA + Supabase (Postgres, Storage, Edge Functions). No accounts: the private edit link is the credential | JavaScript | 2 | 2026-11-16 |
+| [Tagthr22](https://github.com/JamesTamayo-Imben/Tagthr22) | — | TypeScript | 2 | 2026-11-16 |
+| [folio-os](https://github.com/JamesTamayo-Imben/folio-os) | — | TypeScript | 2 | 2026-11-16 |
+| [pomonote](https://github.com/JamesTamayo-Imben/pomonote) | Focus timer + tasks + notes in one keyboard-first, local-first app. No account, no database, no dependencies. Live site: https://jamestamayo-imben.github.io/pomonote/ | JavaScript | 1 | 2026-11-16 |
+| [step22](https://github.com/JamesTamayo-Imben/step22) | — | JavaScript | 3 | 2026-11-16 |
+| [JamesTamayo-Imben](https://github.com/JamesTamayo-Imben/JamesTamayo-Imben) | — | Python | 1 | 2026-11-16 |
+
+<!-- repositories:end -->
+
 <img src="assets/title-toolkit.svg" width="100%" alt="Toolkit — The tools I reach for.">
 
 <img src="assets/toolkit.svg" width="100%" alt="Tools and technologies: JavaScript, TypeScript, PHP, SQL, React, Inertia.js, Laravel, Node.js, Express, MySQL, PostgreSQL, SQLite, Supabase, Figma, Git, and AI-assisted development.">
 
 <img src="assets/title-commits.svg" width="100%" alt="Commit log — A year of building.">
 
-<img src="assets/readme-snake.svg" width="100%" alt="Animated view of my GitHub contribution graph.">
+<img src="https://raw.githubusercontent.com/JamesTamayo-Imben/JamesTamayo-Imben/output/snake-dark.svg" width="100%" alt="Animated view of my GitHub contribution graph.">
 
-<p align="center"><img src="assets/readme-streak.svg" width="495" alt="GitHub contribution streak."> <img src="assets/github-summary.svg" width="495" alt="GitHub at a glance: four stars across featured projects."></p>
+<p align="center"><img src="assets/readme-streak.svg" width="495" alt="GitHub contribution streak."> <img src="assets/github-summary.svg" width="495" alt="GitHub at a glance: stars earned across public repositories."></p>
 
 <img src="assets/title-certifications.svg" width="100%" alt="Certifications — Credentials, verified.">
 

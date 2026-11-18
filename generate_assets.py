@@ -228,6 +228,12 @@ def github_project_count():
         raise ValueError("GITHUB_PROJECT_COUNT must be a non-negative integer")
     return count
 
+def github_stars_total():
+    total=os.environ.get("GITHUB_STARS_TOTAL","4")
+    if not total.isdecimal():
+        raise ValueError("GITHUB_STARS_TOTAL must be a non-negative integer")
+    return total
+
 def achievements():
     A=[(github_project_count(),"Featured projects","projects",100),("6","User roles in STEP22","roles",100),
        ("SHA-256","Tamper-evident ledger","ledger",100),("4","Online certifications","certificate",100),
@@ -402,9 +408,9 @@ def readme_link_assets():
     b=f'<rect x="1" y="1" width="{w-2}" height="{h-2}" rx="14" fill="{PANEL}" stroke="{LINE}"/>'
     b+=t(24,42,"GitHub at a glance",18,TXT,weight="600")
     b+=f'<line x1="24" y1="62" x2="471" y2="62" stroke="{LINE}"/>'
-    b+=t(24,106,"4",30,LIGHT,weight="600")
+    b+=t(24,106,github_stars_total(),30,LIGHT,weight="600")
     b+=t(66,106,"GitHub stars earned",14,TXT)
-    b+=t(24,142,"Across my featured projects",13,MUT)
+    b+=t(24,142,"Across public repositories",13,MUT)
     wrap("github-summary",w,h,b,orbs=False)
 
 

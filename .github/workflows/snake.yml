@@ -2,7 +2,7 @@ name: Generate contribution snake
 
 on:
   schedule:
-    - cron: "0 */12 * * *"
+    - cron: "0 0 * * *"
   workflow_dispatch:
   push:
     branches: [main]
@@ -16,6 +16,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Refresh public repository index
+        id: public_repositories
+        env:
+          GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 scripts/update_github_repositories.py >> "$GITHUB_OUTPUT"
+
       - name: Count public GitHub projects
         env:
           GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}
@@ -23,18 +30,20 @@ jobs:
         run: echo "GITHUB_PROJECT_COUNT=$(python3 scripts/count_github_projects.py)" >> "$GITHUB_ENV"
 
       - name: Refresh portfolio project counts
+        env:
+          GITHUB_STARS_TOTAL: ${{ steps.public_repositories.outputs.stars_total }}
         run: |
-          python3 -c 'import runpy; assets=runpy.run_path("generate_assets.py"); assets["portrait"](); assets["achievements"](); assets["full_readme"]()'
+          python3 -c 'import runpy; assets=runpy.run_path("generate_assets.py"); assets["portrait"](); assets["achievements"](); assets["readme_link_assets"](); assets["full_readme"]()'
 
-      - name: Commit refreshed project counts
+      - name: Commit refreshed profile data
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add assets/ascii-portrait.svg assets/achievements.svg assets/full-readme.svg
+          git add README.md assets/ascii-portrait.svg assets/achievements.svg assets/github-summary.svg assets/full-readme.svg
           if git diff --cached --quiet; then
-            echo "Project counts are already up to date."
+            echo "Profile data is already up to date."
           else
-            git commit -m "Update GitHub project counts"
+            git commit -m "Refresh GitHub profile data"
             git push
           fi
 

@@ -688,9 +688,9 @@
     </g><g transform="translate(505 4962) scale(1)"><g clip-path="url(#asset18_rc)">
 <rect width="495" height="195" fill="url(#asset18_bg)" /><rect width="495" height="195" fill="url(#asset18_grid)" />
 <rect x="1" y="1" width="493" height="193" rx="14" fill="#0A1633" stroke="#16295A" /><text x="24" y="42" font-family="'JetBrains Mono','Fira Code',Consolas,'Courier New',monospace" font-size="16" fill="#E6EEFF" font-weight="600" font-style="normal" text-anchor="start" letter-spacing="0">GitHub at a glance</text>
-<line x1="24" y1="62" x2="471" y2="62" stroke="#16295A" /><text x="24" y="106" font-family="'JetBrains Mono','Fira Code',Consolas,'Courier New',monospace" font-size="32" fill="#93C5FD" font-weight="600" font-style="normal" text-anchor="start" letter-spacing="0">4</text>
+<line x1="24" y1="62" x2="471" y2="62" stroke="#16295A" /><text x="24" y="106" font-family="'JetBrains Mono','Fira Code',Consolas,'Courier New',monospace" font-size="32" fill="#93C5FD" font-weight="600" font-style="normal" text-anchor="start" letter-spacing="0">11</text>
 <text x="66" y="106" font-family="'JetBrains Mono','Fira Code',Consolas,'Courier New',monospace" font-size="14" fill="#E6EEFF" font-weight="400" font-style="normal" text-anchor="start" letter-spacing="0">GitHub stars earned</text>
-<text x="24" y="142" font-family="'JetBrains Mono','Fira Code',Consolas,'Courier New',monospace" font-size="12" fill="#8FA3C7" font-weight="400" font-style="normal" text-anchor="start" letter-spacing="0">Across my featured projects</text>
+<text x="24" y="142" font-family="'JetBrains Mono','Fira Code',Consolas,'Courier New',monospace" font-size="12" fill="#8FA3C7" font-weight="400" font-style="normal" text-anchor="start" letter-spacing="0">Across public repositories</text>
 
 </g>
 <rect x=".5" y=".5" width="494" height="194" rx="18" fill="none" stroke="#16295A" />
