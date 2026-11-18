@@ -22,7 +22,7 @@
 
 <a href="https://github.com/JamesTamayo-Imben/Batify"><img src="assets/project-3.svg" width="100%" alt="Batify lets someone share birthday letters, wishes, and gifts through one link, without sign-up."></a>
 
-<p align="center"><a href="https://github.com/JamesTamayo-Imben/Batify"><img src="assets/button-repository.svg" alt="Batify repository"></a></p>
+<p align="center"><a href="https://batify.site.je"><img src="assets/button-live-site.svg" alt="Live Batify"></a> <a href="https://github.com/JamesTamayo-Imben/Batify"><img src="assets/button-repository.svg" alt="Batify repository"></a></p>
 
 <a href="https://github.com/JamesTamayo-Imben/folio-os"><img src="assets/project-4.svg" width="100%" alt="FolioOS, a desktop-style design portfolio with project case studies and recruiter information."></a>
 
@@ -32,20 +32,6 @@
 
 <p align="center"><a href="https://github.com/JamesTamayo-Imben/Tagthr22"><img src="assets/button-repository.svg" alt="Tagthr22 repository"></a></p>
 
-<!-- repositories:start -->
-
-### All public repositories (refreshed daily)
-
-| Repository | Description | Language | Stars | Last updated |
-| --- | --- | --- | ---: | --- |
-| [Batify](https://github.com/JamesTamayo-Imben/Batify) | Bati na, may pa-gift pa. · Birthday letters, wishes & gifts — one link, no signup.  A static React SPA + Supabase (Postgres, Storage, Edge Functions). No accounts: the private edit link is the credential | JavaScript | 2 | 2026-11-16 |
-| [Tagthr22](https://github.com/JamesTamayo-Imben/Tagthr22) | — | TypeScript | 2 | 2026-11-16 |
-| [folio-os](https://github.com/JamesTamayo-Imben/folio-os) | — | TypeScript | 2 | 2026-11-16 |
-| [pomonote](https://github.com/JamesTamayo-Imben/pomonote) | Focus timer + tasks + notes in one keyboard-first, local-first app. No account, no database, no dependencies. Live site: https://jamestamayo-imben.github.io/pomonote/ | JavaScript | 1 | 2026-11-16 |
-| [step22](https://github.com/JamesTamayo-Imben/step22) | — | JavaScript | 3 | 2026-11-16 |
-| [JamesTamayo-Imben](https://github.com/JamesTamayo-Imben/JamesTamayo-Imben) | — | Python | 1 | 2026-11-16 |
-
-<!-- repositories:end -->
 
 <img src="assets/title-toolkit.svg" width="100%" alt="Toolkit — The tools I reach for.">
 
